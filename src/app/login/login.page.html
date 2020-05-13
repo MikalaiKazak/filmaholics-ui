@@ -18,18 +18,18 @@
                 <ion-list>
                     <ion-item>
                         <ion-label position="floating">Email</ion-label>
-                        <ion-input formControlName="email" required type="email"></ion-input>
+                        <ion-input formControlName="email" type="email"></ion-input>
                     </ion-item>
                     <div *ngIf="loginForm.get('email').invalid && (loginForm.get('email').touched || loginForm.get('email').dirty)"
-                         style="color: red; text-align:right;">Email not valid
+                         style="color: red; text-align:right; font-size: 14px">Email not valid
                     </div>
 
                     <ion-item>
                         <ion-label position="floating">Password</ion-label>
-                        <ion-input formControlName="password" required type="password"></ion-input>
+                        <ion-input formControlName="password" type="password"></ion-input>
                     </ion-item>
                     <div *ngIf="loginForm.get('password').invalid && (loginForm.get('password').touched || loginForm.get('password').dirty)"
-                         style="color: red; text-align:right">
+                         style="color: red; text-align:right; font-size: 14px">
                         Password to short
                     </div>
                 </ion-list>
@@ -41,18 +41,25 @@
                 <ion-button [disabled]="!loginForm.valid" color="primary" expand="block" type="submit">Login
                 </ion-button>
 
-                <p style="text-align:right"><a [routerLink]="['/forgot-password']" class="small-text">Forgot
+                <p style="text-align:right; font-size: 14px; margin-top: -1px; margin-bottom: 25px"><a
+                        [routerLink]="['/forgot-password']" class="small-text">Forgot
                     Password?</a></p>
 
-                <ion-button (click)="googleLogin()" color="danger" expand="block" type="submit">Login with Google
-                </ion-button>
-
-                <span class="divider line one-line">or</span>
-
-                <p class="already">Don't have a account?</p>
-
-                <ion-button [routerLink]="['/registration']" color="primary" expand="block">Sign up</ion-button>
             </ion-col>
         </ion-row>
     </form>
+
+    <ion-row class="ion-justify-content-center">
+        <ion-col size-md="4" size-sm="8" size-xs="12">
+            <ion-button (click)="googleLogin()" color="danger" expand="block" type="submit">Login with Google
+            </ion-button>
+
+            <span class="divider line one-line">or</span>
+
+            <p class="already">Don't have a account?</p>
+
+            <ion-button [routerLink]="['/registration']" color="primary" expand="block">Sign up</ion-button>
+        </ion-col>
+    </ion-row>
+
 </ion-content>

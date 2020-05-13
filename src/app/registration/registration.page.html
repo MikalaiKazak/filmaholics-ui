@@ -21,7 +21,7 @@
                         <ion-input formControlName="email" required type="text"></ion-input>
                     </ion-item>
                     <div *ngIf="registrationForm.get('email').invalid && (registrationForm.get('email').touched || registrationForm.get('email').dirty)"
-                         style="color: red; text-align:right;">Email not valid
+                         style="color: red; text-align:right; font-size: 14px">Email not valid
                     </div>
 
                     <ion-item lines="full">
@@ -29,7 +29,7 @@
                         <ion-input formControlName="password" required type="password"></ion-input>
                     </ion-item>
                     <div *ngIf="registrationForm.get('password').invalid && (registrationForm.get('password').touched || registrationForm.get('password').dirty)"
-                         style="color: red; text-align:right">
+                         style="color: red; text-align:right; font-size: 14px">
                         Password to short
                     </div>
 
