@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthenticationService} from '../shared/authentication-service';
+import {AuthenticationService} from '../../shared/authentication-service';
 import {Router} from '@angular/router';
-import {AlertController, LoadingController} from '@ionic/angular';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {CoreService} from '../../shared/core.service';
 
 @Component({
     selector: 'app-forgot-password',
@@ -15,10 +15,9 @@ export class ForgotPasswordPage implements OnInit {
 
     constructor(
         private formBuilder: FormBuilder,
-        private alertController: AlertController,
         private authService: AuthenticationService,
         private router: Router,
-        private loadingController: LoadingController,
+        private coreService: CoreService,
     ) {
     }
 
@@ -29,31 +28,17 @@ export class ForgotPasswordPage implements OnInit {
     }
 
     async passwordRecover() {
-        const loading = await this.loadingController.create({
-            message: 'Please wait...'
-        });
-
-        loading.present();
+        this.coreService.showLoadingIcon();
 
         this.authService.PasswordRecover(this.passwordRecoverForm.value.email)
-            .then(data => {
-                    loading.dismiss();
-                    this.showBasicAlert('Success', 'Please check your email now.');
+            .then(() => {
+                    this.coreService.hideLoadingIcon();
+                    this.coreService.showAlertMessage('Success', 'Please check your email now.');
                     this.router.navigate(['login']);
                 },
                 err => {
-                    loading.dismiss();
-                    this.showBasicAlert('Error', err.message);
+                    this.coreService.hideLoadingIcon();
+                    this.coreService.showAlertMessage('Error', err.message);
                 });
-    }
-
-
-    async showBasicAlert(title, text) {
-        const alert = await this.alertController.create({
-            header: title,
-            message: text,
-            buttons: ['OK']
-        });
-        alert.present();
     }
 }

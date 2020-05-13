@@ -1,0 +1,34 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>
+            Movies
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+    <ion-row>
+        <ion-col>
+            <div>Popular</div>
+
+            <div class="swiper-button-prev swiper-button-black" (click)="slider.prevSlide(popularMovieSlider)"></div>
+            <ion-slides #popularMovieSlider [options]="slider.slideOpts">
+                <ion-slide *ngFor="let movie of movieList">
+                    <ion-row>
+                        <ion-col>
+                            <ion-card>
+                                <ion-img [routerLink]="['/movie-detail/', movie.id]"
+                                     onError="this.src = '../assets/images/no-image-poster.png'"
+                                     src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}"
+                                     [alt]="movie.title"></ion-img>
+                            </ion-card>
+                        </ion-col>
+                    </ion-row>
+                </ion-slide>
+            </ion-slides>
+            <div class="swiper-button-next swiper-button-black" (click)="slider.nextSlide(popularMovieSlider)"></div>
+        </ion-col>
+    </ion-row>
+
+</ion-content>

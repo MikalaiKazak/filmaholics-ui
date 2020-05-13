@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {AuthenticationService} from '../shared/authentication-service';
-import {AlertController, LoadingController} from '@ionic/angular';
+import {AuthenticationService} from '../../shared/authentication-service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {CoreService} from '../../shared/core.service';
 
 @Component({
     selector: 'app-registration',
@@ -15,11 +15,10 @@ export class RegistrationPage implements OnInit {
     public registrationForm: FormGroup;
 
     constructor(
+        private coreService: CoreService,
         private formBuilder: FormBuilder,
-        private alertController: AlertController,
         private authService: AuthenticationService,
         private router: Router,
-        private loadingController: LoadingController,
     ) {
     }
 
@@ -31,31 +30,18 @@ export class RegistrationPage implements OnInit {
     }
 
     async signUp() {
-        const loading = await this.loadingController.create({
-            message: 'Please wait...'
-        });
-
-        loading.present();
+        this.coreService.showLoadingIcon();
 
         this.authService.RegisterUser(this.registrationForm.value.email, this.registrationForm.value.password)
-            .then(data => {
+            .then(() => {
                     this.authService.SendVerificationMail().then(() => {
-                        loading.dismiss();
+                        this.coreService.hideLoadingIcon();
                         this.router.navigate(['login']);
                     });
                 },
                 err => {
-                    loading.dismiss();
-                    this.showBasicAlert('Error', err.message);
+                    this.coreService.hideLoadingIcon();
+                    this.coreService.showAlertMessage('Error', err.message);
                 });
-    }
-
-    async showBasicAlert(title, text) {
-        const alert = await this.alertController.create({
-            header: title,
-            message: text,
-            buttons: ['OK']
-        });
-        alert.present();
     }
 }

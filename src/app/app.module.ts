@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {ErrorHandler, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {RouteReuseStrategy} from '@angular/router';
 
@@ -15,8 +15,11 @@ import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {environment} from '../environments/environment';
 
-import {AuthenticationService} from './../app/shared/authentication-service';
+import {AuthenticationService} from './shared/authentication-service';
 import {AuthGuard} from './shared/auth.guard';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {CustomHttpInterceptor} from './core/custom-http.interceptor';
+import {CustomErrorHandler} from './core/custom-error-handler';
 
 @NgModule({
     declarations: [AppComponent],
@@ -27,6 +30,7 @@ import {AuthGuard} from './shared/auth.guard';
         AppRoutingModule,
         AngularFireModule.initializeApp(environment.firebaseConfig),
         AngularFireAuthModule,
+        HttpClientModule,
         AngularFireDatabaseModule,
         AngularFirestoreModule
     ],
@@ -34,6 +38,8 @@ import {AuthGuard} from './shared/auth.guard';
         StatusBar,
         SplashScreen,
         {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
+        {provide: HTTP_INTERCEPTORS, useClass: CustomHttpInterceptor, multi: true},
+        {provide: ErrorHandler, useClass: CustomErrorHandler},
         AuthenticationService,
         AngularFirestoreModule,
         AuthGuard

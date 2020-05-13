@@ -1,0 +1,34 @@
+
+.segment-content {
+  padding: 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .category-content {
+    padding: 5px 10px;
+    border-bottom: 3px solid black;
+
+    span {
+      color: black;
+      font-size: 13px;
+      font-weight: 700;
+    }
+  }
+
+  .active {
+    border-bottom: 3px solid #cd4851;
+  }
+}
+
+ion-card {
+  background-color: white;
+  --background: white;
+  border: none;
+}
+
+ion-infinite-scroll {
+  color: #cd4851;
+  --color: #cd4851;
+}
