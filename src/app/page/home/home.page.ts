@@ -6,28 +6,32 @@ import {CoreService} from '../../shared/core.service';
 import {SliderComponent} from '../../core/slider/slider.component';
 
 @Component({
-    selector: 'app-main',
-    templateUrl: './main.page.html',
-    styleUrls: ['./main.page.scss'],
+    selector: 'app-home',
+    templateUrl: './home.page.html',
+    styleUrls: ['./home.page.scss'],
 })
-export class MainPage implements OnInit {
+export class HomePage implements OnInit {
 
+    @ViewChild('latestMovieSlider', {static: false}) latestMovieSlider: IonSlides;
     @ViewChild('popularMovieSlider', {static: false}) popularMovieSlider: IonSlides;
     @ViewChild('upcomingMovieSlider', {static: false}) upcomingMovieSlider: IonSlides;
     @ViewChild('nowPlayingSlider', {static: false}) nowPlayingSlider: IonSlides;
     @ViewChild('topRatedMovieSlider', {static: false}) topRatedMovieSlider: IonSlides;
 
+    latestMovieList: Movie[] = [];
     popularMovieList: Movie[] = [];
     upcomingMovieList: Movie[] = [];
     nowPlayingMovieList: Movie[] = [];
     topRatedMovieList: Movie[] = [];
 
+    isLatestMovieListLoaded = false;
     isPopularMovieListLoaded = false;
     isUpcomingMovieListLoaded = false;
     isNowPlayingMovieListLoaded = false;
     isTopRatedMovieListLoaded = false;
 
     constructor(private movieService: MovieService, private coreService: CoreService, public slider: SliderComponent) {
+        coreService.menuEnable = true;
     }
 
     ngOnInit(): void {
@@ -35,6 +39,7 @@ export class MainPage implements OnInit {
         this.getMovies('popular', 1);
         this.getMovies('nowPlaying', 1);
         this.getMovies('topRated', 1);
+        this.getMovies('latest', 1);
     }
 
     private getMovies(category: string, pageNumber: number) {
@@ -42,7 +47,7 @@ export class MainPage implements OnInit {
         this.isUpcomingMovieListLoaded = false;
         this.isNowPlayingMovieListLoaded = false;
         this.isTopRatedMovieListLoaded = false;
-
+        this.isLatestMovieListLoaded = false;
         switch (category) {
             case 'upcoming':
                 this.movieService.getTopUpcomingMovies(pageNumber).subscribe(movieResponse => {
@@ -67,6 +72,12 @@ export class MainPage implements OnInit {
                 this.movieService.getTopRatedMovies(pageNumber).subscribe(movieResponse => {
                     this.topRatedMovieList = this.topRatedMovieList.concat(movieResponse);
                     this.isTopRatedMovieListLoaded = true;
+                });
+                break;
+            case 'latest':
+                this.movieService.getLatestMovies(pageNumber).subscribe(movieResponse => {
+                    this.latestMovieList = this.latestMovieList.concat(movieResponse);
+                    this.isLatestMovieListLoaded = true;
                 });
                 break;
             default:

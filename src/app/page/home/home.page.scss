@@ -1,0 +1,51 @@
+.nav-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  ion-img {
+    position: absolute;
+  }
+}
+
+.divider {
+  font-size: 20px;
+  color: black;
+  text-decoration: none;
+}
+
+.divider:first-child {
+  margin-top: 20px;
+}
+
+.divider:hover {
+  font-weight: bold;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  background-color: white;
+  background-color: rgba(255, 255, 255, 0.5);
+  right: 10px;
+  padding: 30px;
+  color: #000 !important;
+  fill: black !important;
+  stroke: black !important;
+}
+
+
+ion-card:hover {
+  border: 2px solid red;
+  background-color: red;
+}
+
+@media screen and (max-width: 720px) {
+  .swiper-button-prev {
+    visibility: hidden;
+  }
+
+  .swiper-button-next {
+    visibility: hidden;
+  }
+}
+

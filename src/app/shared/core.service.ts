@@ -6,6 +6,7 @@ import {AlertController, LoadingController} from '@ionic/angular';
 })
 export class CoreService {
 
+    menuEnable = false;
     private loadingIcon: any;
 
     constructor(

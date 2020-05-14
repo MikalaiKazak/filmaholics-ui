@@ -19,6 +19,7 @@ export class ForgotPasswordPage implements OnInit {
         private router: Router,
         private coreService: CoreService,
     ) {
+        coreService.menuEnable = false;
     }
 
     ngOnInit() {

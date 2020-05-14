@@ -1,6 +1,6 @@
 import {Injectable, NgZone} from '@angular/core';
 import {auth} from 'firebase/app';
-import {User} from './user';
+import {User} from '../model/user';
 import {Router} from '@angular/router';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
@@ -87,5 +87,25 @@ export class AuthenticationService {
 
     getCurrentUser(): Promise<firebase.User> {
         return this.ngFireAuth.authState.pipe(first()).toPromise();
+    }
+
+    async isLoggedIn(): Promise<boolean> {
+        try {
+            await new Promise((resolve, reject) => {
+                this.ngFireAuth.auth.onAuthStateChanged(
+                    user => {
+                        if (user) {
+                            resolve(user);
+                        } else {
+                            reject('no user logged in');
+                        }
+                    }, error => {
+                        reject(error);
+                    });
+            });
+            return true;
+        } catch (error) {
+            return false;
+        }
     }
 }

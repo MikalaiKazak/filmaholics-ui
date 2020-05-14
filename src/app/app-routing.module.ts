@@ -3,7 +3,7 @@ import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
 import {AuthGuard} from './shared/auth.guard';
 
 const routes: Routes = [
-    {path: '', redirectTo: 'main', pathMatch: 'full'},
+    {path: '', redirectTo: 'home', pathMatch: 'full'},
     {
         path: 'login',
         loadChildren: () => import('./page/login/login.module').then(m => m.LoginPageModule), canLoad: [AuthGuard]
@@ -23,8 +23,8 @@ const routes: Routes = [
         canActivate: [AuthGuard]
     },
     {
-        path: 'main',
-        loadChildren: () => import('./page/main/main.module').then(m => m.MainPageModule)
+        path: 'home',
+        loadChildren: () => import('./page/home/home-page.module').then(m => m.HomePageModule), canActivate: [AuthGuard]
     },
 ];
 

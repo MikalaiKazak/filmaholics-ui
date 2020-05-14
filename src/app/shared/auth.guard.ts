@@ -7,6 +7,7 @@ import {AuthenticationService} from './authentication-service';
     providedIn: 'root'
 })
 export class AuthGuard implements CanActivate, CanLoad {
+
     constructor(private authenticationService: AuthenticationService, private router: Router) {
     }
 
@@ -42,7 +43,7 @@ export class AuthGuard implements CanActivate, CanLoad {
                     .then(data => {
                         if (data) {
                             reject('user logged in');
-                            this.router.navigateByUrl('/main');
+                            this.router.navigateByUrl('/home');
                         } else {
                             resolve(true);
                         }

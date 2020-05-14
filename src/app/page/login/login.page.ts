@@ -11,14 +11,15 @@ import {CoreService} from '../../shared/core.service';
 })
 export class LoginPage implements OnInit {
 
-    public loginForm: FormGroup;
+    loginForm: FormGroup;
 
     constructor(
         private coreService: CoreService,
         private formBuilder: FormBuilder,
-        public authService: AuthenticationService,
+        private authService: AuthenticationService,
         private router: Router
     ) {
+        coreService.menuEnable = false;
     }
 
     ngOnInit() {
@@ -33,8 +34,9 @@ export class LoginPage implements OnInit {
 
         this.authService.SignIn(this.loginForm.value.email, this.loginForm.value.password)
             .then(() => {
-                    this.router.navigate(['dashboard']);
+                    this.router.navigate(['home']);
                     this.coreService.hideLoadingIcon();
+                    this.coreService.menuEnable = true;
                 },
                 err => {
                     this.coreService.hideLoadingIcon();
@@ -49,7 +51,8 @@ export class LoginPage implements OnInit {
             .then(data => {
                     this.coreService.hideLoadingIcon();
                     this.authService.ngZone.run(() => {
-                        this.router.navigate(['dashboard']);
+                        this.router.navigate(['home']);
+                        this.coreService.menuEnable = true;
                     });
                     this.authService.SetUserData(data.user);
                 },

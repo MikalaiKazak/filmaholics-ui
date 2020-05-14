@@ -20,6 +20,7 @@ export class RegistrationPage implements OnInit {
         private authService: AuthenticationService,
         private router: Router,
     ) {
+        coreService.menuEnable = false;
     }
 
     ngOnInit() {

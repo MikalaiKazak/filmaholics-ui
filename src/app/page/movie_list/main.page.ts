@@ -6,7 +6,7 @@ import {CoreService} from '../../shared/core.service';
 import {SliderComponent} from '../../core/slider/slider.component';
 
 @Component({
-    selector: 'app-main',
+    selector: 'app-home',
     templateUrl: './main.page.html',
     styleUrls: ['./main.page.scss'],
 })
