@@ -1,0 +1,30 @@
+.divider {
+  font-size: 20px;
+  color: black;
+  border-bottom: 3px solid transparent;
+  padding: 5px 5px;
+}
+
+.line {
+  align-items: center;
+  margin: 1em -1em;
+
+  &:before,
+  &:after {
+    height: 1px;
+    margin: 0 1em;
+  }
+}
+
+.one-line {
+  &:before,
+  &:after {
+    background: #cccccc;
+  }
+}
+
+ion-slide:hover{
+  background-color: #d8dfe6 !important;
+  border-radius: 10%;
+}
+
