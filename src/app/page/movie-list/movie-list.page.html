@@ -1,0 +1,45 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-buttons class="nav-logo">
+            <ion-img src="assets/image/logo_words.png"></ion-img>
+        </ion-buttons>
+    </ion-toolbar>
+    <ion-toolbar>
+        <ion-searchbar (ionFocus)="openSearchPage()" animated placeholder="Search"></ion-searchbar>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+    <loading-icon *ngIf="!isDataLoaded"></loading-icon>
+    <div class="movie-poster-card">
+        <ion-grid>
+            <ion-row>
+                <ion-col *ngFor="let movie of movieList" size-md="3" size-sm="4" size-xl="2" size-xs="6">
+                    <ion-card>
+                        <span class="rating">{{movie.vote_average}}</span>
+                        <ion-img (ionError)="coreService.handleImgError($event)"
+                                 [alt]="movie.title"
+                                 [routerLink]="['/movie-detail/', movie.id]"
+                                 src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}"></ion-img>
+                        <ion-card-content>
+                            <div class="movie-info">
+                                <span class="movie-title"
+                                      style="font-size: 15px; font-weight: bold">{{ movie.title }}</span>
+                            </div>
+                        </ion-card-content>
+                    </ion-card>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+
+    <ion-infinite-scroll (ionInfinite)="loadMoreMovies()" threshold="100px">
+        <ion-infinite-scroll-content
+                loadingSpinner="circles">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+</ion-content>
