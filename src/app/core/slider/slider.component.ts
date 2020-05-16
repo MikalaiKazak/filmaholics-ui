@@ -17,30 +17,30 @@ export class SliderComponent {
             },
             // when window width is <= 480px
             480: {
-                slidesPerView: 2,
+                slidesPerView: 1,
                 spaceBetweenSlides: 20
             },
             // when window width is <= 640px
             640: {
-                slidesPerView: 3,
+                slidesPerView: 2,
                 spaceBetweenSlides: 30
             },
             1280: {
-                slidesPerView: 4,
+                slidesPerView: 3,
                 spaceBetweenSlides: 50
             },
             1440: {
-                slidesPerView: 5,
+                slidesPerView: 4,
                 spaceBetweenSlides: 60
             }
         },
 
         coverflowEffect: {
-            rotate: 30,
+            rotate: 20,
             stretch: 0,
             depth: 100,
             modifier: 1,
-            slideShadows: true,
+            slideShadows: false,
         },
         on: {
             beforeInit() {
@@ -140,7 +140,7 @@ export class SliderComponent {
         swipeGesture: true,
         keep_infinity: true,
         initialSlide: 0,
-        slidesPerView: 10,
+        slidesPerView: 7,
         breakpoints: {
             // when window width is <= 320px
             320: {
@@ -149,24 +149,24 @@ export class SliderComponent {
             },
             // when window width is <= 480px
             480: {
-                slidesPerView: 3,
+                slidesPerView: 2,
                 spaceBetweenSlides: 20
             },
             // when window width is <= 640px
             640: {
-                slidesPerView: 4,
+                slidesPerView: 3,
                 spaceBetweenSlides: 30
             },
             960: {
-                slidesPerView: 5,
+                slidesPerView: 4,
                 spaceBetweenSlides: 40
             },
             1280: {
-                slidesPerView: 6,
+                slidesPerView: 5,
                 spaceBetweenSlides: 50
             },
             1440: {
-                slidesPerView: 7,
+                slidesPerView: 6,
                 spaceBetweenSlides: 60
             }
         }

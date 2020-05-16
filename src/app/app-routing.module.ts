@@ -10,7 +10,8 @@ const routes: Routes = [
     },
     {
         path: 'registration',
-        loadChildren: () => import('./page/registration/registration.module').then(m => m.RegistrationPageModule), canLoad: [AuthGuard]
+        loadChildren: () => import('./page/registration/registration.module').then(m => m.RegistrationPageModule),
+        canLoad: [AuthGuard]
     },
     {
         path: 'forgot-password',
@@ -25,6 +26,10 @@ const routes: Routes = [
     {
         path: 'home',
         loadChildren: () => import('./page/home/home-page.module').then(m => m.HomePageModule), canActivate: [AuthGuard]
+    },
+    {
+        path: 'movie-list/:category',
+        loadChildren: () => import('./page/movie-list/movie-list.module').then(m => m.MovieListPageModule)
     },
 ];
 
