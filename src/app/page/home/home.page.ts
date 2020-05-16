@@ -4,6 +4,7 @@ import {Movie} from '../../model/movie';
 import {MovieService} from '../../shared/movie.service';
 import {CoreService} from '../../shared/core.service';
 import {SliderComponent} from '../../core/slider/slider.component';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-home',
@@ -30,7 +31,7 @@ export class HomePage implements OnInit {
     isNowPlayingMovieListLoaded = false;
     isTopRatedMovieListLoaded = false;
 
-    constructor(private movieService: MovieService, private coreService: CoreService, public slider: SliderComponent) {
+    constructor(private movieService: MovieService, private coreService: CoreService, public slider: SliderComponent, private route: Router) {
         coreService.menuEnable = true;
     }
 
@@ -40,6 +41,13 @@ export class HomePage implements OnInit {
         this.getMovies('nowPlaying', 1);
         this.getMovies('topRated', 1);
         this.getMovies('latest', 1);
+    }
+
+    openSearchPage() {
+        this.route.navigateByUrl('/search').then((resolve) => {
+            setTimeout(() => {
+            }, 150);
+        });
     }
 
     private getMovies(category: string, pageNumber: number) {

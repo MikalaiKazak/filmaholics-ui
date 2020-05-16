@@ -29,7 +29,13 @@ const routes: Routes = [
     },
     {
         path: 'movie-list/:category',
-        loadChildren: () => import('./page/movie-list/movie-list.module').then(m => m.MovieListPageModule)
+        loadChildren: () => import('./page/movie-list/movie-list.module').then(m => m.MovieListPageModule),
+        canActivate: [AuthGuard]
+    },
+    {
+        path: 'search',
+        loadChildren: () => import('./page/search/search.module').then(m => m.SearchPageModule),
+        canActivate: [AuthGuard]
     },
 ];
 

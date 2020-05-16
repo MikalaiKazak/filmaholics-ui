@@ -13,7 +13,8 @@ import {AuthenticationService} from './shared/authentication-service';
 })
 export class AppComponent {
 
-    navigate: any;;
+    navigate: any;
+;
 
     constructor(
         private coreService: CoreService,

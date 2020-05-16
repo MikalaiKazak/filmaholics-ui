@@ -50,4 +50,7 @@ export class CoreService {
     //         tintColor: '#ff0000'
     //     });
     // }
+    handleImgError(event: any) {
+        event.target.src = '../assets/image/no-image-poster.png';
+    }
 }

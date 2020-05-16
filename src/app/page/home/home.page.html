@@ -8,7 +8,7 @@
         </ion-buttons>
     </ion-toolbar>
     <ion-toolbar>
-        <ion-searchbar animated placeholder="Search movie"></ion-searchbar>
+        <ion-searchbar (ionFocus)="openSearchPage()" animated placeholder="Search"></ion-searchbar>
     </ion-toolbar>
 </ion-header>
 
@@ -23,9 +23,10 @@
                     <ion-row>
                         <ion-col>
                             <ion-card>
-                                <ion-img [alt]="movie.title"
+                                <span class="rating">{{movie.vote_average}}</span>
+                                <ion-img (ionError)="coreService.handleImgError($event)"
+                                         [alt]="movie.title"
                                          [routerLink]="['/movie-detail/', movie.id]"
-                                         onError="this.src = '../assets/images/no-image-poster.png'"
                                          src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}"></ion-img>
                             </ion-card>
                         </ion-col>
@@ -51,9 +52,10 @@
                     <ion-row>
                         <ion-col>
                             <ion-card>
-                                <ion-img [alt]="movie.title"
+                                <span class="rating">{{movie.vote_average}}</span>
+                                <ion-img (ionError)="coreService.handleImgError($event)"
+                                         [alt]="movie.title"
                                          [routerLink]="['/movie-detail/', movie.id]"
-                                         onError="this.src = '../assets/images/no-image-poster.png'"
                                          src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}"></ion-img>
                             </ion-card>
                         </ion-col>
@@ -78,9 +80,10 @@
                     <ion-row>
                         <ion-col>
                             <ion-card>
-                                <ion-img [alt]="movie.title"
+                                <span class="rating">{{movie.vote_average}}</span>
+                                <ion-img (ionError)="coreService.handleImgError($event)"
+                                         [alt]="movie.title"
                                          [routerLink]="['/movie-detail/', movie.id]"
-                                         onError="this.src = '../assets/images/no-image-poster.png'"
                                          src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}"></ion-img>
                             </ion-card>
                         </ion-col>
@@ -105,9 +108,10 @@
                     <ion-row>
                         <ion-col>
                             <ion-card>
-                                <ion-img [alt]="movie.title"
+                                <span class="rating">{{movie.vote_average}}</span>
+                                <ion-img (ionError)="coreService.handleImgError($event)"
+                                         [alt]="movie.title"
                                          [routerLink]="['/movie-detail/', movie.id]"
-                                         onError="this.src = '../assets/images/no-image-poster.png'"
                                          src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}"></ion-img>
                             </ion-card>
                         </ion-col>
@@ -131,9 +135,10 @@
                     <ion-row>
                         <ion-col>
                             <ion-card>
-                                <ion-img [alt]="movie.title"
+                                <span class="rating">{{movie.vote_average}}</span>
+                                <ion-img (ionError)="coreService.handleImgError($event)"
+                                         [alt]="movie.title"
                                          [routerLink]="['/movie-detail/', movie.id]"
-                                         onError="this.src = '../assets/images/no-image-poster.png'"
                                          src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}"></ion-img>
                             </ion-card>
                         </ion-col>
