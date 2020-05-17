@@ -20,10 +20,11 @@ import {AuthGuard} from './shared/auth.guard';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {CustomHttpInterceptor} from './core/custom-http.interceptor';
 import {CustomErrorHandler} from './core/custom-error-handler';
+import {TrailerComponent} from './page/trailer/trailer.component';
 
 @NgModule({
-    declarations: [AppComponent],
-    entryComponents: [],
+    declarations: [AppComponent, TrailerComponent],
+    entryComponents: [TrailerComponent],
     imports: [
         BrowserModule,
         IonicModule.forRoot(),

@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-buttons class="nav-logo">
+      <ion-img src="assets/image/logo_words.png"></ion-img>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar (ionFocus)="openSearchPage()" animated placeholder="Search"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <loading-icon *ngIf="!movie"></loading-icon>
+
+  <ion-grid *ngIf="movie">
+
+    <ion-row>
+
+      <ion-col>
+        <div class="movie-poster">
+          <img onError="this.src = '../assets/images/no-image-poster.png'"
+               src="https://image.tmdb.org/t/p/w1280/{{movie.poster_path}}"/>
+        </div>
+
+        <ion-button (click)="showMovieTrailer();" color="danger" expand="block"><ion-icon name="play"></ion-icon> Play Trailer</ion-button>
+      </ion-col>
+
+      <ion-col>
+        <h2>{{movie.title}}</h2>
+
+        <hr>
+
+        <h4>{{movie.release_date}}</h4>
+        <span *ngFor="let genre of movie.genres">{{genre.name}}</span>
+        <span>{{movie.runtime}}m</span>
+
+        <hr>
+
+        <span>buttons</span>
+
+        <hr>
+
+        <span>{{movie.tagline}}</span>
+        Overview
+        <p>{{movie.overview}}</p>
+
+
+
+      </ion-col>
+
+    </ion-row>
+
+  </ion-grid>
+
+</ion-content>

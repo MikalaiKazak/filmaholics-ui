@@ -37,6 +37,10 @@ const routes: Routes = [
         loadChildren: () => import('./page/search/search.module').then(m => m.SearchPageModule),
         canActivate: [AuthGuard]
     },
+    {
+        path: 'movie-detail/:movieId',
+        loadChildren: () => import('./page/movie-detail/movie-detail.module').then(m => m.MovieDetailPageModule), canActivate: [AuthGuard]
+    },
 ];
 
 @NgModule({

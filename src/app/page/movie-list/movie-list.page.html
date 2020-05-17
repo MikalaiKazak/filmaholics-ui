@@ -18,7 +18,8 @@
     <div class="movie-poster-card">
         <ion-grid>
             <ion-row>
-                <ion-col *ngFor="let movie of movieList" size-md="3" size-sm="4" size-xl="2" size-xs="6">
+                <ion-col *ngFor="let movie of movieList" size-md="3" size-sm="4" size-xl="2" size-xs="6"
+                         style="text-align: center; padding: 0;">
                     <ion-card>
                         <span class="rating">{{movie.vote_average}}</span>
                         <ion-img (ionError)="coreService.handleImgError($event)"

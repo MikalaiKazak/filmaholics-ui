@@ -1,7 +1,7 @@
 <ion-header>
     <ion-toolbar>
         <ion-buttons slot="start">
-            <ion-menu-button></ion-menu-button>
+            <ion-back-button></ion-back-button>
         </ion-buttons>
         <ion-buttons class="nav-logo">
             <ion-img src="assets/image/logo_words.png"></ion-img>
@@ -19,9 +19,9 @@
         <ion-col>
             <div (click)="slider.prevSlide(latestMovieSlider)" class="swiper-button-prev swiper-button-black"></div>
             <ion-slides #latestMovieSlider [options]="slider.fullScreenSlideOpt">
-                <ion-slide *ngFor="let movie of popularMovieList">
+                <ion-slide *ngFor="let movie of upcomingMovieList">
                     <ion-row>
-                        <ion-col>
+                        <ion-col style="text-align: center; padding: 0;">
                             <ion-card>
                                 <span class="rating">{{movie.vote_average}}</span>
                                 <ion-img (ionError)="coreService.handleImgError($event)"
@@ -50,7 +50,7 @@
             <ion-slides #popularMovieSlider [options]="slider.slideOpts">
                 <ion-slide *ngFor="let movie of popularMovieList">
                     <ion-row>
-                        <ion-col>
+                        <ion-col style="text-align: center; padding: 0;">
                             <ion-card>
                                 <span class="rating">{{movie.vote_average}}</span>
                                 <ion-img (ionError)="coreService.handleImgError($event)"
@@ -78,7 +78,7 @@
             <ion-slides #upcomingMovieSlider [options]="slider.slideOpts">
                 <ion-slide *ngFor="let movie of upcomingMovieList">
                     <ion-row>
-                        <ion-col>
+                        <ion-col style="text-align: center; padding: 0;">
                             <ion-card>
                                 <span class="rating">{{movie.vote_average}}</span>
                                 <ion-img (ionError)="coreService.handleImgError($event)"
@@ -106,7 +106,7 @@
             <ion-slides #nowPlayingSlider [options]="slider.slideOpts">
                 <ion-slide *ngFor="let movie of topRatedMovieList">
                     <ion-row>
-                        <ion-col>
+                        <ion-col style="text-align: center; padding: 0;">
                             <ion-card>
                                 <span class="rating">{{movie.vote_average}}</span>
                                 <ion-img (ionError)="coreService.handleImgError($event)"
@@ -133,7 +133,7 @@
             <ion-slides #topRatedMovieSlider [options]="slider.slideOpts">
                 <ion-slide *ngFor="let movie of nowPlayingMovieList">
                     <ion-row>
-                        <ion-col>
+                        <ion-col style="text-align: center; padding: 0;">
                             <ion-card>
                                 <span class="rating">{{movie.vote_average}}</span>
                                 <ion-img (ionError)="coreService.handleImgError($event)"

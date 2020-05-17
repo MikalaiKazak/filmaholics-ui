@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
-import {AlertController, LoadingController} from '@ionic/angular';
+import {AlertController, LoadingController, ModalController} from '@ionic/angular';
+import {TrailerComponent} from '../page/trailer/trailer.component';
 
 @Injectable({
     providedIn: 'root'
@@ -11,7 +12,8 @@ export class CoreService {
 
     constructor(
         private alertController: AlertController,
-        private loadingCtrl: LoadingController
+        private loadingCtrl: LoadingController,
+        private modalCtrl: ModalController
     ) {
     }
 
@@ -40,16 +42,19 @@ export class CoreService {
         }
     }
 
-    // showBrowser(url: string) {
-    //     return this.browserController.show({
-    //         url: url,
-    //         hidden: false,
-    //         animated: false,
-    //         transition: 'slide',
-    //         enterReaderModeIfAvailable: true,
-    //         tintColor: '#ff0000'
-    //     });
-    // }
+    async showBrowser(url: string) {
+        const trailerModal = await this.modalCtrl.create({
+                component: TrailerComponent,
+                componentProps: {url},
+                animated: true,
+                keyboardClose: true,
+                cssClass: 'trailer-modal'
+
+            }
+        );
+        return await trailerModal.present();
+    }
+
     handleImgError(event: any) {
         event.target.src = '../assets/image/no-image-poster.png';
     }

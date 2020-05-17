@@ -47,12 +47,44 @@
   font-weight: bold;
   top: 5px;
   right: 5px;
-  text-align: center;
-  align-items: center;
-  padding-top: 9px;
   width: 35px;
   height: 35px;
-  background-color: #E3110E;
+  background-color: black;
   border-radius: 50%;
   position: absolute;
+  padding-top: 9px;
 }
+
+.rating::after {
+  content: "";
+  width: 27px;
+  height: 27px;
+  border: 2px solid forestgreen;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+}
+
+@media only screen and (min-height: 600px) and (min-width: 768px) {
+  .sc-ion-modal-md-h {
+    --width: 600px;
+    --height: 400px;
+    --ion-safe-area-top: 0px;
+    --ion-safe-area-bottom: 0px;
+    --ion-safe-area-right: 0px;
+    --ion-safe-area-left: 0px;
+  }
+}
+
+@media only screen and (min-height: 600px) and (max-width: 768px) {
+  .sc-ion-modal-md-h {
+    --width: 90%;
+    --height: 40%;
+    --ion-safe-area-top: 0px;
+    --ion-safe-area-bottom: 0px;
+    --ion-safe-area-right: 0px;
+    --ion-safe-area-left: 0px;
+  }
+}
+
