@@ -66,25 +66,10 @@
   left: 2px;
 }
 
-@media only screen and (min-height: 600px) and (min-width: 768px) {
-  .sc-ion-modal-md-h {
-    --width: 600px;
-    --height: 400px;
-    --ion-safe-area-top: 0px;
-    --ion-safe-area-bottom: 0px;
-    --ion-safe-area-right: 0px;
-    --ion-safe-area-left: 0px;
+.trailer-modal {
+  .modal-wrapper {
+    background-color: black;
   }
 }
 
-@media only screen and (min-height: 600px) and (max-width: 768px) {
-  .sc-ion-modal-md-h {
-    --width: 90%;
-    --height: 40%;
-    --ion-safe-area-top: 0px;
-    --ion-safe-area-bottom: 0px;
-    --ion-safe-area-right: 0px;
-    --ion-safe-area-left: 0px;
-  }
-}
 

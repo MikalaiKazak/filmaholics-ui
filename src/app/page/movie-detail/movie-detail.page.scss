@@ -1,0 +1,139 @@
+.swiper-button-next,
+.swiper-button-prev {
+  background-color: white;
+  background-color: rgba(255, 255, 255, 0.5);
+  right: 10px;
+  padding: 30px;
+  color: #000 !important;
+  fill: black !important;
+  stroke: black !important;
+}
+
+ion-card:hover {
+  border: 2px solid red;
+}
+
+
+.divider {
+  margin-bottom: 8px;
+  font-size: 20px;
+  color: black;
+  text-decoration: none;
+}
+
+.divider:first-child {
+  margin-top: 20px;
+}
+
+.divider:hover {
+  font-weight: bold;
+}
+
+.cast-and-crew {
+
+  .title {
+    font-size: 21px;
+  }
+
+  .cast-list {
+    display: flex;
+
+    .cast-item {
+      width: 150px;
+      height: 150px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+
+      .cast-photo {
+        padding: 0;
+        width: 100%;
+        height: 80px;
+        display: flex;
+        justify-content: center;
+
+
+        img {
+          border-radius: 50%;
+          width: 80px;
+          height: 80px;
+          object-fit: cover;
+          overflow: hidden;
+        }
+      }
+
+      .cast-info {
+        width: 120px;
+        height: 120px;
+        margin-top: 10px;
+        text-align: center;
+        overflow: hidden;
+
+        .cast-name {
+          font-size: 13px;
+          font-weight: bold;
+        }
+
+        .cast-character {
+          font-size: 12px;
+          font-weight: 300;
+          color: #b1b1b1;
+        }
+      }
+    }
+
+  }
+}
+
+.movie-overview {
+  position: relative;
+  color: white;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.movie-overview:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,.65);
+  z-index: 2;
+}
+
+.movie-info {
+  padding: 15px;
+  padding-top: 35px;
+
+  .title {
+    font-size: 45px;
+    font-weight: 900;
+  }
+
+  .release-data {
+
+  }
+
+  .genre {
+    font-style: oblique;
+  }
+
+  .runtime {
+
+  }
+
+  .tagline {
+    font-weight: lighter;
+    font-style: italic;
+    color: #989aa2;
+  }
+
+  .movie-overview {
+
+  }
+}

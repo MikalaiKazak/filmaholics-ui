@@ -1,9 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {MovieService} from '../../shared/movie.service';
 import {CoreService} from '../../shared/core.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Movie} from '../../model/movie';
 import {Cast} from '../../model/cast';
+import {SliderComponent} from '../../core/slider/slider.component';
+import {IonSlides} from '@ionic/angular';
 
 @Component({
     selector: 'app-movie-detail',
@@ -11,6 +13,9 @@ import {Cast} from '../../model/cast';
     styleUrls: ['./movie-detail.page.scss'],
 })
 export class MovieDetailPage implements OnInit {
+
+    @ViewChild('similarMovieSlider', {static: false}) similarMovieSlider: IonSlides;
+    @ViewChild('crewSlider', {static: false}) crewSlider: IonSlides;
 
     movie: Movie;
     castList: Cast[] = [];
@@ -22,7 +27,8 @@ export class MovieDetailPage implements OnInit {
     constructor(private activatedRoute: ActivatedRoute,
                 private route: Router,
                 private movieService: MovieService,
-                private coreService: CoreService) {
+                private coreService: CoreService,
+                private slider: SliderComponent) {
         this.coreService.menuEnable = true;
     }
 
@@ -57,8 +63,7 @@ export class MovieDetailPage implements OnInit {
 
     getMovieCast() {
         this.movieService.getMovieCast(this.movieID).subscribe(d => {
-            const tmpCastList = d;
-            this.castList = tmpCastList.length > 10 ? tmpCastList.slice(0, 10) : tmpCastList;
+            this.castList = d;
         });
     }
 
