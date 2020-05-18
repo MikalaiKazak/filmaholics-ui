@@ -124,6 +124,14 @@ ion-card:hover {
   }
 
   .runtime {
+    position: relative;
+    ion-icon {
+      top: 0;
+      position: absolute;
+    }
+    span {
+      margin-left: 20px
+    }
   }
 
   .tagline {
@@ -139,6 +147,7 @@ ion-card:hover {
 
 
 .profile-btn {
+  padding: 0;
 
   ion-button {
     margin-right: 20px;
