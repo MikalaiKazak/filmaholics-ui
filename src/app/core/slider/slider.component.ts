@@ -7,7 +7,7 @@ import {IonSlides} from '@ionic/angular';
 export class SliderComponent {
 
     fullScreenSlideOpt = {
-        slidesPerView: 5,
+        slidesPerView: 6,
 
         breakpoints: {
             // when window width is <= 320px
@@ -17,20 +17,20 @@ export class SliderComponent {
             },
             // when window width is <= 480px
             480: {
-                slidesPerView: 1,
+                slidesPerView: 2,
                 spaceBetweenSlides: 20
             },
             // when window width is <= 640px
-            640: {
-                slidesPerView: 2,
+            700: {
+                slidesPerView: 3,
                 spaceBetweenSlides: 30
             },
             1280: {
-                slidesPerView: 3,
+                slidesPerView: 4,
                 spaceBetweenSlides: 50
             },
             1440: {
-                slidesPerView: 4,
+                slidesPerView: 5,
                 spaceBetweenSlides: 60
             }
         },
@@ -176,7 +176,7 @@ export class SliderComponent {
         swipeGesture: true,
         keep_infinity: true,
         initialSlide: 0,
-        slidesPerView: 7,
+        slidesPerView: 8,
         breakpoints: {
             // when window width is <= 320px
             320: {

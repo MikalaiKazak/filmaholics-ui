@@ -4,29 +4,26 @@
             <ion-header>
                 <ion-toolbar>
                     <ion-title>Navigate</ion-title>
-                    <ion-buttons slot="end">
-                        <ion-button class="profileBtn">
-                            <ion-icon name="person" slot="start"></ion-icon>
-                        </ion-button>
-                    </ion-buttons>
                 </ion-toolbar>
             </ion-header>
             <ion-content>
-                <ion-list *ngFor="let p of navigate">
+                <ion-list>
                     <ion-menu-toggle auto-hide="false">
-                        <ion-item [disabled]="!p.visible" [routerDirection]="'forward'" [routerLink]="[p.url]">
-                            <ion-icon [name]="p.icon" slot="start"></ion-icon>
+                        <ion-item [disabled]="!p.visible" [routerDirection]="'forward'" [routerLink]="[p.url]" *ngFor="let p of navigate">
+                            <ion-icon [name]="p.icon"></ion-icon>
                             <ion-label>
                                 <h2>{{p.title}}</h2>
+                            </ion-label>
+                        </ion-item>
+                        <ion-item [disabled]="!auth.isLoggedIn" (click)="auth.SignOut()"  [routerLink]="">
+                            <ion-icon name="exit"></ion-icon>
+                            <ion-label>
+                                <h2>Logout</h2>
                             </ion-label>
                         </ion-item>
                     </ion-menu-toggle>
                 </ion-list>
             </ion-content>
-
-            <ion-footer class="ion-justify-content-center" style="text-align: center">
-                <ion-button (click)="auth.SignOut()" color="dark" type="submit">Logout</ion-button>
-            </ion-footer>
         </ion-menu>
 
         <ion-router-outlet id="content1"></ion-router-outlet>

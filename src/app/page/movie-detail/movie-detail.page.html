@@ -17,35 +17,12 @@
     <loading-icon *ngIf="!movie"></loading-icon>
 
     <ion-grid *ngIf="movie">
-        <ion-row>
-            <ion-col>
-                <div (click)="slider.prevSlide(similarMovieSlider)"
-                     class="swiper-button-prev swiper-button-black"></div>
-                <ion-slides #similarMovieSlider [options]="slider.similarSlideOpts">
-                    <ion-slide *ngFor="let movie of similarMovies">
-                        <ion-row>
-                            <ion-col style="text-align: center; padding: 0;">
-                                <ion-card>
-                                    <span class="rating">{{movie.vote_average}}</span>
-                                    <ion-img (ionError)="coreService.handleImgError($event)"
-                                             [alt]="movie.title"
-                                             [routerLink]="['/movie-detail/', movie.id]"
-                                             src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}"></ion-img>
-                                </ion-card>
-                            </ion-col>
-                        </ion-row>
-                    </ion-slide>
-                </ion-slides>
-                <div (click)="slider.nextSlide(similarMovieSlider)"
-                     class="swiper-button-next swiper-button-black"></div>
-            </ion-col>
-        </ion-row>
 
         <div class="movie-overview"
              [ngStyle]="{backgroundImage: 'url(https://image.tmdb.org/t/p/w1280/' + movie.backdrop_path + ')'}">
             <ion-row>
 
-                <ion-col size-md="3" size-xs="12" size-sm="5" style=" z-index: 3;">
+                <ion-col size-xl="3" size-md="4" size-xs="12" size-sm="5" style=" z-index: 3;">
 
                     <div class="movie-poster">
                         <img onError="this.src = '../assets/images/no-image-poster.png'"
@@ -125,6 +102,35 @@
             </ion-col>
         </ion-row>
 
+        <ion-row>
+            <ion-col>
+                <div class="divider-wrapper title">
+                    <ion-item-divider><a [routerLink]="['/movie-list/', 'popular']"
+                                         class="divider title">Similar</a>
+                    </ion-item-divider>
+                </div>
+
+                <div (click)="slider.prevSlide(similarMovieSlider)"
+                     class="swiper-button-prev swiper-button-black"></div>
+                <ion-slides #similarMovieSlider [options]="slider.similarSlideOpts">
+                    <ion-slide *ngFor="let movie of similarMovies">
+                        <ion-row>
+                            <ion-col style="text-align: center; padding: 0;">
+                                <ion-card>
+                                    <span class="rating">{{movie.vote_average}}</span>
+                                    <ion-img (ionError)="coreService.handleImgError($event)"
+                                             [alt]="movie.title"
+                                             [routerLink]="['/movie-detail/', movie.id]"
+                                             src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}"></ion-img>
+                                </ion-card>
+                            </ion-col>
+                        </ion-row>
+                    </ion-slide>
+                </ion-slides>
+                <div (click)="slider.nextSlide(similarMovieSlider)"
+                     class="swiper-button-next swiper-button-black"></div>
+            </ion-col>
+        </ion-row>
 
     </ion-grid>
 

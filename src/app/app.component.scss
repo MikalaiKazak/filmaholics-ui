@@ -1,15 +1,18 @@
-.profileBtn:hover {
-
+.split-pane-md.split-pane-visible > .split-pane-side {
+  min-width: 90px;
+  max-width: 15%;
+  border-right: var(--border);
+  border-left: 0;
 }
 
-.profileBtn {
-  padding: 0;
-  align-items: center;
-  text-align: center;
+ion-item:first-child {
+  margin-top: 20px;
+}
+
+ion-item {
+  margin-bottom: 20px;
 
   ion-icon {
-    padding-left: 5px;
-    font-size: 25px;
-    color: black;
+    margin-right: 10px;
   }
 }

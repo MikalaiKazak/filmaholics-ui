@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 import {Platform} from '@ionic/angular';
 import {SplashScreen} from '@ionic-native/splash-screen/ngx';
@@ -11,10 +11,10 @@ import {AuthenticationService} from './shared/authentication-service';
     templateUrl: 'app.component.html',
     styleUrls: ['app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
+    isPhone = false;
     navigate: any;
-;
 
     constructor(
         private coreService: CoreService,
@@ -25,6 +25,10 @@ export class AppComponent {
     ) {
         this.sideMenu();
         this.initializeApp();
+    }
+
+    ngOnInit() {
+        this.isPhone = this.platform.is('mobile');
     }
 
     initializeApp() {
@@ -47,6 +51,12 @@ export class AppComponent {
                     title: 'TV series',
                     url: '/home',
                     icon: 'videocam',
+                    visible: this.auth.isLoggedIn
+                },
+                {
+                    title: 'Profile',
+                    url: '/profile',
+                    icon: 'person-circle-outline',
                     visible: this.auth.isLoggedIn
                 }
             ];
