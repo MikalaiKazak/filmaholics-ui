@@ -42,22 +42,28 @@
                         <hr>
 
                         <h5 class="release-data"><ion-icon name="calendar-outline"></ion-icon> {{movie.release_date}}</h5>
+
+                        <hr>
+
                         <span class="genre" *ngFor="let genre of movie.genres">{{genre.name}} </span>
+
+                        <hr>
+
                         <span class="runtime"> <ion-icon name="time-outline"></ion-icon>{{movie.runtime}}min</span>
 
                         <hr>
 
-                        <ion-buttons>
-                            <ion-button>
+                        <ion-buttons class="profile-btn">
+                            <ion-button fill="solid" color="dark" shape="round">
                                 <ion-icon name="list-outline"></ion-icon>
                             </ion-button>
-                            <ion-button>
+                            <ion-button fill="solid" color="dark" shape="round">
                                 <ion-icon name="heart-outline"></ion-icon>
                             </ion-button>
-                            <ion-button>
+                            <ion-button fill="solid" color="dark" shape="round">
                                 <ion-icon name="bookmarks-outline"></ion-icon>
                             </ion-button>
-                            <ion-button>
+                            <ion-button fill="solid" color="dark" shape="round">
                                 <ion-icon name="star-outline"></ion-icon>
                             </ion-button>
                         </ion-buttons>
