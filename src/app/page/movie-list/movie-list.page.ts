@@ -79,6 +79,15 @@ export class MovieListPage implements OnInit {
                     this.isDataLoaded = true;
                 });
                 break;
+            case 'category':
+                this.selectedCategory = 'category';
+                const genre = this.activatedRoute.snapshot.queryParamMap.get('genre');
+                this.movieService.getCategoryMovies(genre, pageNumber).subscribe(movieResponse => {
+                    this.movieList = this.movieList.concat(movieResponse);
+                    this.infiniteScroll.complete();
+                    this.isDataLoaded = true;
+                });
+                break;
             default:
                 break;
         }

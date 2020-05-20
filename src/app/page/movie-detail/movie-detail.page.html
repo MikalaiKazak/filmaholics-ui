@@ -45,7 +45,10 @@
 
                         <hr>
 
-                        <span class="genre" *ngFor="let genre of movie.genres">{{genre.name}} </span>
+                        <span class="genre" *ngFor="let genre of movie.genres">
+                            <ion-label fill="clear" [routerLink]="['/movie-list/', 'category']" [queryParams]="{genre : genre.id}">{{genre.name}}
+                            </ion-label>
+                        </span>
 
                         <hr>
 
