@@ -7,6 +7,11 @@ import { AccountPage } from './account.page';
 const routes: Routes = [
   {
     path: '',
+    redirectTo: '/account/favorite',
+    pathMatch: 'full'
+  },
+  {
+    path: '',
     component: AccountPage,
     children: [
       {
@@ -16,13 +21,9 @@ const routes: Routes = [
       {
         path: 'favorite',
         loadChildren: () => import('../favorite/favorite.module').then(m => m.FavoritePageModule)
-      }
+      },
     ]
   },
-  {
-    path: '',
-    redirectTo: 'account/favorite',
-  }
 ];
 
 @NgModule({
