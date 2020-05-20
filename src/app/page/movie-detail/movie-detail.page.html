@@ -25,6 +25,7 @@
                 <ion-col size-xl="3" size-md="4" size-xs="12" size-sm="5" style=" z-index: 3;">
 
                     <div class="movie-poster">
+                        <div class="hoverPlay" (click)="getMovieVideo()"><ion-icon name="play"></ion-icon></div>
                         <img onError="this.src = '../assets/images/no-image-poster.png'"
                              src="https://image.tmdb.org/t/p/w1280/{{movie.poster_path}}"/>
                     </div>

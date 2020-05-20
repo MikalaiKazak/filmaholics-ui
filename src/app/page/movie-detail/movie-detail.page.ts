@@ -160,6 +160,9 @@ export class MovieDetailPage implements OnInit {
         });
     }
 
+    getMovieVideo() {
+        console.log('dsfdsf');
+    }
 
     getSimilarMovies() {
         this.isSimilarMovieLoad = false;

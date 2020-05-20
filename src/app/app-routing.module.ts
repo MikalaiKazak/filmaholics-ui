@@ -53,6 +53,10 @@ const routes: Routes = [
         path: 'watchlist',
         loadChildren: () => import('./page/watchlist/watchlist.module').then(m => m.WatchlistPageModule), canActivate: [AuthGuard]
     },
+    {
+        path: 'movieplay',
+        loadChildren: () => import('./page/movieplay/movieplay.module').then(m => m.MovieplayPageModule), canActivate: [AuthGuard]
+    },
 ];
 
 @NgModule({

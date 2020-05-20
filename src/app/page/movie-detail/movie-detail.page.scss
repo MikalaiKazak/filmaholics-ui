@@ -184,5 +184,29 @@ ion-card:hover {
   }
 }
 
+.hoverPlay {
+  color: #FFFFFF;
+  visibility: hidden;
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,.5);
+  text-align: center;
+  font-size: 150px;
+
+  ion-icon {
+    margin-top: 50%;
+  }
+}
+
+
+.movie-poster:hover > .hoverPlay {
+  transition: 0.4s;
+  visibility: visible;
+  opacity: 1;
+}
 
 

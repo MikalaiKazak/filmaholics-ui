@@ -216,4 +216,8 @@ export class MovieService {
         const userUid = this.authService.getActiveUser().uid;
         return this.afStore.doc(`data/${userUid}`).collection('ratings').valueChanges();
     }
+
+    getMovieVideo() {
+
+    }
 }
