@@ -82,7 +82,8 @@
         </div>
 
 
-        <ion-row>
+        <loading-icon  *ngIf="!isCastLoad"></loading-icon>
+        <ion-row *ngIf="isCastLoad">
             <ion-col>
                 <div class="cast-and-crew">
                     <div class="divider-wrapper title">
@@ -109,7 +110,8 @@
             </ion-col>
         </ion-row>
 
-        <ion-row>
+        <loading-icon  *ngIf="!isSimilarMovieLoad"></loading-icon>
+        <ion-row  *ngIf="isSimilarMovieLoad">
             <ion-col>
                 <div class="divider-wrapper title">
                     <ion-item-divider><a [routerLink]="['/movie-list/', 'popular']"

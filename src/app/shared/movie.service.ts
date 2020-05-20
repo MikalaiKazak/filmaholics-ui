@@ -206,4 +206,14 @@ export class MovieService {
         const userUid = this.authService.getActiveUser().uid;
         return this.afStore.doc(`data/${userUid}/watchlist/${data.id}`).delete();
     }
+
+    addRating(movie: Movie, rating: number) {
+        const userUid = this.authService.getActiveUser().uid;
+        return this.afStore.doc(`data/${userUid}`).collection('ratings').doc(`${movie.id}`).set(rating);
+    }
+
+    getRating() {
+        const userUid = this.authService.getActiveUser().uid;
+        return this.afStore.doc(`data/${userUid}`).collection('ratings').valueChanges();
+    }
 }

@@ -20,6 +20,8 @@ export class MovieDetailPage implements OnInit {
 
     isExistAtFavorite: boolean;
     isExistAtWatchList: boolean;
+    isSimilarMovieLoad: boolean;
+    isCastLoad: boolean;
     movie: Movie;
     castList: Cast[] = [];
     similarMovies: Movie[] = [];
@@ -40,6 +42,10 @@ export class MovieDetailPage implements OnInit {
 
 
     ngOnInit() {
+        this.isCastLoad = false;
+        this.isSimilarMovieLoad = false;
+        this.isExistAtWatchList = false;
+        this.isExistAtFavorite = false;
         this.movieID = this.activatedRoute.snapshot.paramMap.get('movieId');
         setTimeout(() => {
             this.getMovieDetail();
@@ -141,8 +147,10 @@ export class MovieDetailPage implements OnInit {
     }
 
     getMovieCast() {
+        this.isCastLoad = false;
         this.movieService.getMovieCast(this.movieID).subscribe(d => {
             this.castList = d;
+            this.isCastLoad = true;
         });
     }
 
@@ -154,8 +162,10 @@ export class MovieDetailPage implements OnInit {
 
 
     getSimilarMovies() {
+        this.isSimilarMovieLoad = false;
         this.movieService.getSimilarMovies(this.movieID).subscribe(d => {
             this.similarMovies = d;
+            this.isSimilarMovieLoad = true;
         });
     }
 }
