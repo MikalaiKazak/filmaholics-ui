@@ -41,6 +41,18 @@ const routes: Routes = [
         path: 'movie-detail/:movieId',
         loadChildren: () => import('./page/movie-detail/movie-detail.module').then(m => m.MovieDetailPageModule), canActivate: [AuthGuard]
     },
+    {
+        path: 'account',
+        loadChildren: () => import('./page/account/account.module').then(m => m.AccountPageModule), canActivate: [AuthGuard]
+    },
+    {
+        path: 'favorite',
+        loadChildren: () => import('./page/favorite/favorite.module').then(m => m.FavoritePageModule), canActivate: [AuthGuard]
+    },
+    {
+        path: 'watchlist',
+        loadChildren: () => import('./page/watchlist/watchlist.module').then(m => m.WatchlistPageModule), canActivate: [AuthGuard]
+    },
 ];
 
 @NgModule({

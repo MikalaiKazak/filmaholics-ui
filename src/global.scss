@@ -55,6 +55,13 @@
   padding-top: 9px;
 }
 
+.deleteBtn {
+  border-radius: 50%;
+  right: 5px;
+  position: absolute;
+}
+
+
 .rating::after {
   content: "";
   width: 27px;

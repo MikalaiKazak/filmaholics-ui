@@ -1,0 +1,36 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-buttons class="nav-logo">
+            <ion-img src="assets/image/logo_words.png"></ion-img>
+        </ion-buttons>
+    </ion-toolbar>
+    <ion-toolbar>
+        <ion-searchbar (ionFocus)="openSearchPage()" animated placeholder="Search"></ion-searchbar>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <div *ngIf="loggedUser">
+
+        <ion-tabs>
+            <ion-tab-bar slot="top">
+                <ion-tab-button tab="watchlist">
+                    <ion-icon name="bookmarks"></ion-icon>
+                    <ion-label>Watchlist</ion-label>
+                </ion-tab-button>
+
+                <ion-tab-button tab="favorite">
+                    <ion-icon name="heart"></ion-icon>
+                    <ion-label>Favorites</ion-label>
+                </ion-tab-button>
+            </ion-tab-bar>
+        </ion-tabs>
+
+    </div>
+
+
+</ion-content>

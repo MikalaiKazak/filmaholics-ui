@@ -58,13 +58,10 @@
                         <hr>
 
                         <ion-buttons class="profile-btn">
-                            <ion-button shape="round">
-                                <ion-icon name="list"></ion-icon>
-                            </ion-button>
-                            <ion-button shape="round">
+                            <ion-button shape="round" (click)="addToFavorite()">
                                 <ion-icon name="heart"></ion-icon>
                             </ion-button>
-                            <ion-button shape="round">
+                            <ion-button shape="round" (click)="addToWatchList()">
                                 <ion-icon name="bookmarks"></ion-icon>
                             </ion-button>
                             <ion-button shape="round">

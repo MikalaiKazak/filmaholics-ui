@@ -48,14 +48,8 @@ export class AppComponent implements OnInit {
                     visible: this.auth.isLoggedIn
                 },
                 {
-                    title: 'TV series',
-                    url: '/home',
-                    icon: 'videocam',
-                    visible: this.auth.isLoggedIn
-                },
-                {
                     title: 'Profile',
-                    url: '/profile',
+                    url: '/account',
                     icon: 'person-circle-outline',
                     visible: this.auth.isLoggedIn
                 }

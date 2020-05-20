@@ -89,6 +89,10 @@ export class AuthenticationService {
         return this.ngFireAuth.authState.pipe(first()).toPromise();
     }
 
+    getActiveUser() {
+        return firebase.auth().currentUser;
+    }
+
     async isLoggedIn(): Promise<boolean> {
         try {
             await new Promise((resolve, reject) => {

@@ -18,7 +18,6 @@ import {environment} from '../environments/environment';
 import {AuthenticationService} from './shared/authentication-service';
 import {AuthGuard} from './shared/auth.guard';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {CustomHttpInterceptor} from './core/custom-http.interceptor';
 import {CustomErrorHandler} from './core/custom-error-handler';
 import {TrailerComponent} from './page/trailer/trailer.component';
 
@@ -39,7 +38,6 @@ import {TrailerComponent} from './page/trailer/trailer.component';
         StatusBar,
         SplashScreen,
         {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
-        {provide: HTTP_INTERCEPTORS, useClass: CustomHttpInterceptor, multi: true},
         {provide: ErrorHandler, useClass: CustomErrorHandler},
         AuthenticationService,
         AngularFirestoreModule,

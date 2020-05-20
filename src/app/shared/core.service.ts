@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {AlertController, LoadingController, ModalController} from '@ionic/angular';
+import {AlertController, LoadingController, ModalController, ToastController} from '@ionic/angular';
 import {TrailerComponent} from '../page/trailer/trailer.component';
 
 @Injectable({
@@ -13,7 +13,8 @@ export class CoreService {
     constructor(
         private alertController: AlertController,
         private loadingCtrl: LoadingController,
-        private modalCtrl: ModalController
+        private modalCtrl: ModalController,
+        private toastCtrl: ToastController
     ) {
     }
 
@@ -25,6 +26,16 @@ export class CoreService {
         });
 
         await alert.present();
+    }
+
+    async showToastMessage(message: string, dur: number, pos: string) {
+        const toast = await this.toastCtrl.create({
+            position: pos,
+            message,
+            duration: dur
+        });
+
+        await toast.present();
     }
 
     async showLoadingIcon() {

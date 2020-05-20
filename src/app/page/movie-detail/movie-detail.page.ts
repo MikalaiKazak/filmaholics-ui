@@ -5,7 +5,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Movie} from '../../model/movie';
 import {Cast} from '../../model/cast';
 import {SliderComponent} from '../../core/slider/slider.component';
-import {IonSlides} from '@ionic/angular';
+import {AlertController, IonSlides, ToastController} from '@ionic/angular';
+import {AuthenticationService} from '../../shared/authentication-service';
 
 @Component({
     selector: 'app-movie-detail',
@@ -17,6 +18,8 @@ export class MovieDetailPage implements OnInit {
     @ViewChild('similarMovieSlider', {static: false}) similarMovieSlider: IonSlides;
     @ViewChild('crewSlider', {static: false}) crewSlider: IonSlides;
 
+    isExistAtFavorite: boolean;
+    isExistAtWatchList: boolean;
     movie: Movie;
     castList: Cast[] = [];
     similarMovies: Movie[] = [];
@@ -28,7 +31,10 @@ export class MovieDetailPage implements OnInit {
                 private route: Router,
                 private movieService: MovieService,
                 private coreService: CoreService,
-                private slider: SliderComponent) {
+                private slider: SliderComponent,
+                private toastCtrl: ToastController,
+                private alertCtrl: AlertController,
+                private authService: AuthenticationService) {
         this.coreService.menuEnable = true;
     }
 
@@ -43,6 +49,78 @@ export class MovieDetailPage implements OnInit {
         }, 500);
     }
 
+    async checkIfMovieAlreadyAtWatchList() {
+        await this.movieService.isAtWatchList(this.movie).subscribe(result => {
+            this.isExistAtWatchList = result.exists;
+        });
+    }
+
+    async addToWatchList() {
+        if (this.isExistAtWatchList) {
+            await this.coreService.showToastMessage('This movie is already added to your watchlist!', 2000, 'bottom');
+            return;
+        }
+
+        const alert = await this.alertCtrl.create({
+            message: 'Do you really want to add this item to watchlist?',
+            buttons: [{
+                text: 'Yes',
+                handler: () => {
+                    this.authService.getCurrentUser()
+                        .then(() => {
+                            this.movieService.addToWatchList(this.movie).then(
+                                () => {
+                                    this.isExistAtWatchList = true;
+                                    this.coreService.showToastMessage('Item added to watchlist!', 2000, 'bottom');
+                                });
+                        });
+                }
+            },
+                {
+                    text: 'No',
+                    role: 'cancel'
+                }
+            ]
+        });
+        await alert.present();
+    }
+
+    async checkIfMovieAlreadyAtFavorite() {
+        await this.movieService.isMovieFavorite(this.movie).subscribe(result => {
+            this.isExistAtFavorite = result.exists;
+        });
+    }
+
+    async addToFavorite() {
+        if (this.isExistAtFavorite) {
+            await this.coreService.showToastMessage('This movie is already added to your favorites!', 2000, 'bottom');
+            return;
+        }
+
+        const alert = await this.alertCtrl.create({
+            message: 'Do you really want to add this item to favorites?',
+            buttons: [{
+                text: 'Yes',
+                handler: () => {
+                    this.authService.getCurrentUser()
+                        .then(() => {
+                            this.movieService.addToFavorites(this.movie).then(
+                                () => {
+                                    this.isExistAtFavorite = true;
+                                    this.coreService.showToastMessage('Item added to favorites!', 2000, 'bottom');
+                                });
+                        });
+                }
+            },
+                {
+                    text: 'No',
+                    role: 'cancel'
+                }
+            ]
+        });
+        await alert.present();
+    }
+
     openSearchPage() {
         this.route.navigateByUrl('/search').then((resolve) => {
             setTimeout(() => {
@@ -53,7 +131,8 @@ export class MovieDetailPage implements OnInit {
     getMovieDetail() {
         this.movieService.getMovieDetail(this.movieID).subscribe(d => {
             this.movie = d;
-            console.log(this.movie);
+            this.checkIfMovieAlreadyAtFavorite();
+            this.checkIfMovieAlreadyAtWatchList();
         });
     }
 
