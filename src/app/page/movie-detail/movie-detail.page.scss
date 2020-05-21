@@ -141,8 +141,9 @@ ion-card:hover {
     color: #989aa2;
   }
 
-  .movie-overview {
-
+  .overview {
+    text-align: justify;
+    text-justify: inter-word;
   }
 }
 
@@ -159,32 +160,6 @@ ion-card:hover {
   }
 }
 
-@media screen and (max-width: 720px) {
-  .movie-info {
-    text-align: center;
-    padding: 15px;
-    padding-top: 0px;
-  }
-
-  .profile-btn {
-
-    ion-button {
-      margin-right: 0;
-    }
-  }
-
-  .swiper-button-prev {
-    visibility: hidden;
-  }
-
-  .swiper-button-next {
-    visibility: hidden;
-  }
-
-  .profile-btn {
-    justify-content: space-between;
-  }
-}
 
 .hoverPlay {
   color: #FFFFFF;
@@ -212,3 +187,59 @@ ion-card:hover {
 }
 
 
+.review-author {
+  font-size: 18px;
+}
+
+.review-content {
+  text-align: justify;
+  text-justify: inter-word;
+  font-size: 15px;
+}
+
+
+.avatar-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+}
+
+.avatarImg {
+  margin-top: 20px;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+
+@media screen and (max-width: 720px) {
+  .movie-info {
+    text-align: center;
+    padding: 15px;
+    padding-top: 0px;
+  }
+
+  .profile-btn {
+
+    ion-button {
+      margin-right: 0;
+    }
+  }
+
+  .swiper-button-prev {
+    visibility: hidden;
+  }
+
+  .swiper-button-next {
+    visibility: hidden;
+  }
+
+  .profile-btn {
+    justify-content: space-between;
+  }
+}

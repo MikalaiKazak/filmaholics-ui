@@ -7,6 +7,21 @@ export interface MovieResponse {
     total_pages: number;
 }
 
+export interface MovieReviewResponse {
+    id: number;
+    page: number;
+    results: MovieReview[];
+    total_results: number;
+    total_pages: number;
+}
+
+export interface MovieReview {
+    id: number;
+    author: string;
+    content: string;
+    url: string;
+}
+
 export interface Movie {
     adult: boolean;
     backdrop_path: string;

@@ -98,8 +98,7 @@
             <ion-col>
                 <div class="cast-and-crew">
                     <div class="divider-wrapper title">
-                        <ion-item-divider><a [routerLink]="['/movie-list/', 'popular']"
-                                             class="divider title">Cast&Crew</a>
+                        <ion-item-divider><a class="divider title">Cast&Crew</a>
                         </ion-item-divider>
                     </div>
 
@@ -150,6 +149,41 @@
                 <div (click)="slider.nextSlide(similarMovieSlider)" *ngIf="isSimilarMovieLoad"
                      class="swiper-button-next swiper-button-black"></div>
             </ion-col>
+        </ion-row>
+
+        <ion-row *ngIf="isMovieReviewLoad">
+
+            <ion-col size="12">
+
+                <div class="divider-wrapper title">
+                    <ion-item-divider><a class="divider title">Reviews</a>
+                    </ion-item-divider>
+                </div>
+
+
+                <ion-row *ngFor="let review of reviews">
+
+                    <ion-col size-xl="2" size-md="2" size-sm="3" size-xs="12">
+                        <div class="avatar-wrapper">
+                            <ion-img class="avatarImg" [alt]="review.author + 'avatar'"
+                                     src="../assets/image/noavatar.png"></ion-img>
+                        </div>
+                    </ion-col>
+
+                    <ion-col size-xl="10" size-md="10" size-sm="9" size-xs="12">
+                        <h3 class="review-author">
+                            Written by {{review.author}}
+                        </h3>
+
+                        <p class="review-content">{{review.content}}</p>
+                    </ion-col>
+
+                    <ion-item-divider></ion-item-divider>
+
+                </ion-row>
+
+            </ion-col>
+
         </ion-row>
 
     </ion-grid>

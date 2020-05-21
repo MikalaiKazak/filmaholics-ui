@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MovieService} from '../../shared/movie.service';
 import {CoreService} from '../../shared/core.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Movie} from '../../model/movie';
+import {Movie, MovieReview} from '../../model/movie';
 import {Cast} from '../../model/cast';
 import {SliderComponent} from '../../core/slider/slider.component';
 import {AlertController, IonSlides, NavController, ToastController} from '@ionic/angular';
@@ -21,10 +21,12 @@ export class MovieDetailPage implements OnInit {
     isExistAtFavorite: boolean;
     isExistAtWatchList: boolean;
     isSimilarMovieLoad: boolean;
+    isMovieReviewLoad: boolean;
     isCastLoad: boolean;
     movie: Movie;
     castList: Cast[] = [];
     similarMovies: Movie[] = [];
+    reviews: MovieReview[] = [];
 
     private movieID = '';
     private trailerURL: any = null;
@@ -47,12 +49,14 @@ export class MovieDetailPage implements OnInit {
         this.isSimilarMovieLoad = false;
         this.isExistAtWatchList = false;
         this.isExistAtFavorite = false;
+        this.isMovieReviewLoad = false;
         this.movieID = this.activatedRoute.snapshot.paramMap.get('movieId');
         setTimeout(() => {
             this.getMovieDetail();
             this.getMovieCast();
             this.getSimilarMovies();
             this.getMovieTrailer();
+            this.getMovieReview();
         }, 500);
     }
 
@@ -168,11 +172,20 @@ export class MovieDetailPage implements OnInit {
                 this.similarMovies = d;
                 this.isSimilarMovieLoad = true;
             }
-
         });
     }
 
     goBack() {
         this.nav.back();
+    }
+
+    private getMovieReview() {
+        this.isMovieReviewLoad = false;
+        this.movieService.getMovieReview(this.movieID, 1).subscribe(d => {
+            if (d && d.length > 0) {
+                this.reviews = d;
+                this.isMovieReviewLoad = true;
+            }
+        });
     }
 }

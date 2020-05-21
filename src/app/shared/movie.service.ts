@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Movie, MovieResponse} from '../model/movie';
+import {Movie, MovieResponse, MovieReview, MovieReviewResponse} from '../model/movie';
 
 import {Observable, throwError} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
@@ -177,6 +177,36 @@ export class MovieService {
         );
     }
 
+    getMovieReview(movieID: string, pageNumber: number): Observable<MovieReview[]> {
+        const queryParams = {
+            api_key: `${environment.tmdbApiKey}`,
+            page: pageNumber.toString()
+        };
+        const url = `${environment.tmdbUrl}` + '/movie/' + movieID + '/reviews';
+        return this.http.get(url, {params: queryParams}).pipe(
+            map((response: MovieReviewResponse) => {
+                return response.results;
+            })
+        );
+    }
+
+    getUserMovieReview(movieID: string) {
+        const userUid = this.authService.getActiveUser().uid;
+        return this.afStore.doc(`data/${userUid}/review/${movieID}`).get();
+    }
+
+    addMovieReview(movieID: string, content: string) {
+        const user = this.authService.getActiveUser();
+
+        const review: MovieReview = {
+            id: 0,
+            author: user.displayName,
+            content,
+            url: 'no_url'
+        };
+
+        return this.afStore.doc(`data/${user.uid}`).collection('review').doc(`${movieID}`).set(review);
+    }
 
     addToFavorites(movie: Movie) {
         const userUid = this.authService.getActiveUser().uid;
