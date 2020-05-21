@@ -38,6 +38,11 @@ export class AppComponent implements OnInit {
         });
     }
 
+    signOut() {
+        this.coreService.menuEnable = false;
+        this.auth.SignOut();
+    }
+
     sideMenu() {
         this.navigate =
             [
@@ -45,6 +50,12 @@ export class AppComponent implements OnInit {
                     title: 'Movies',
                     url: '/home',
                     icon: 'film',
+                    visible: this.auth.isLoggedIn
+                },
+                {
+                    title: 'Genres',
+                    url: '/genre',
+                    icon: 'list',
                     visible: this.auth.isLoggedIn
                 },
                 {

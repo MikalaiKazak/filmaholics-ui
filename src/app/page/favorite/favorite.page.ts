@@ -32,7 +32,7 @@ export class FavoritePage implements OnInit {
 
     async deleteFromFavorite(movie: Movie) {
         await this.movieService.removeFromFavorite(movie).then(() => {
-           this.coreService.showToastMessage('Movie delete form favorites', 2000, 'bottom');
+            this.coreService.showToastMessage('Movie delete form favorites', 2000, 'bottom');
         });
     }
 }

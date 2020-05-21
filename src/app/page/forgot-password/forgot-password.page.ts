@@ -3,6 +3,7 @@ import {AuthenticationService} from '../../shared/authentication-service';
 import {Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CoreService} from '../../shared/core.service';
+import {NavController} from '@ionic/angular';
 
 @Component({
     selector: 'app-forgot-password',
@@ -15,6 +16,7 @@ export class ForgotPasswordPage implements OnInit {
 
     constructor(
         private formBuilder: FormBuilder,
+        private nav: NavController,
         private authService: AuthenticationService,
         private router: Router,
         private coreService: CoreService,
@@ -41,5 +43,9 @@ export class ForgotPasswordPage implements OnInit {
                     this.coreService.hideLoadingIcon();
                     this.coreService.showAlertMessage('Error', err.message);
                 });
+    }
+
+    goBack() {
+        this.nav.back();
     }
 }

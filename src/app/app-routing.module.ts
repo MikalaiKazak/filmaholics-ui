@@ -54,8 +54,12 @@ const routes: Routes = [
         loadChildren: () => import('./page/watchlist/watchlist.module').then(m => m.WatchlistPageModule), canActivate: [AuthGuard]
     },
     {
-        path: 'movieplay',
+        path: 'movieplay/:movieId',
         loadChildren: () => import('./page/movieplay/movieplay.module').then(m => m.MovieplayPageModule), canActivate: [AuthGuard]
+    },
+    {
+        path: 'genre',
+        loadChildren: () => import('./page/genre/genre.module').then(m => m.GenrePageModule), canActivate: [AuthGuard]
     },
 ];
 

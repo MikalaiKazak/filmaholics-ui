@@ -18,7 +18,6 @@ export class TrailerComponent implements OnInit {
 
         const paramUrl = this.params.get('url');
         this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(paramUrl.replace('watch?v=', 'embed/') + '?autoplay=1');
-        console.log(this.videoUrl)
     }
 
 

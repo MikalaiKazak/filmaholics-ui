@@ -4,9 +4,9 @@ import {FormsModule} from '@angular/forms';
 
 import {IonicModule} from '@ionic/angular';
 
-import {MovieDetailPageRoutingModule} from './movie-detail-routing.module';
+import {GenrePageRoutingModule} from './genre-routing.module';
 
-import {MovieDetailPage} from './movie-detail.page';
+import {GenrePage} from './genre.page';
 import {ComponentsModule} from '../../core/components.module';
 
 @NgModule({
@@ -14,10 +14,10 @@ import {ComponentsModule} from '../../core/components.module';
         CommonModule,
         FormsModule,
         IonicModule,
-        MovieDetailPageRoutingModule,
+        GenrePageRoutingModule,
         ComponentsModule
     ],
-    declarations: [MovieDetailPage]
+    declarations: [GenrePage]
 })
-export class MovieDetailPageModule {
+export class GenrePageModule {
 }

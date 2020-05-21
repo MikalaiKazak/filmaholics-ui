@@ -1,6 +1,6 @@
 /* Core */
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {IonSearchbar} from '@ionic/angular';
+import {IonSearchbar, NavController} from '@ionic/angular';
 import {Movie} from '../../model/movie';
 import {MovieService} from '../../shared/movie.service';
 import {CoreService} from '../../shared/core.service';
@@ -20,7 +20,7 @@ export class SearchPage implements OnInit {
     @ViewChild('searchbar', {static: false}) searchbar: IonSearchbar;
     private isDataLoaded = true;
 
-    constructor(private movieService: MovieService, private coreService: CoreService) {
+    constructor(private movieService: MovieService, private coreService: CoreService, private nav: NavController,) {
         coreService.menuEnable = true;
     }
 
@@ -41,5 +41,9 @@ export class SearchPage implements OnInit {
             this.movieList = [];
             this.isDataLoaded = true;
         });
+    }
+
+    goBack() {
+        this.nav.back();
     }
 }

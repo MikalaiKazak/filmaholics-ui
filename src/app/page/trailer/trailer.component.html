@@ -1,15 +1,15 @@
 <div class="embedresize">
     <div class="close-wrapper">
-        <ion-button class="closeBtn" (click)="closeModal()" fill="clear">
-            <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+        <ion-button (click)="closeModal()" class="closeBtn" fill="clear">
+            <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
         </ion-button>
     </div>
-    <iframe width="auto"
-            height="auto"
-            [src]="videoUrl"
-            frameborder="0"
+    <iframe [src]="videoUrl"
+            allow="autoplay"
             allowfullscreen
-            allow="autoplay">
+            frameborder="0"
+            height="auto"
+            width="auto">
     </iframe>
 </div>
 

@@ -17,7 +17,7 @@ import {environment} from '../environments/environment';
 
 import {AuthenticationService} from './shared/authentication-service';
 import {AuthGuard} from './shared/auth.guard';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {HttpClientModule} from '@angular/common/http';
 import {CustomErrorHandler} from './core/custom-error-handler';
 import {TrailerComponent} from './page/trailer/trailer.component';
 

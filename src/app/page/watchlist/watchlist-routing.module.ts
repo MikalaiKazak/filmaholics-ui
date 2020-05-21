@@ -1,17 +1,18 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 
-import { WatchlistPage } from './watchlist.page';
+import {WatchlistPage} from './watchlist.page';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: WatchlistPage
-  }
+    {
+        path: '',
+        component: WatchlistPage
+    }
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule],
 })
-export class WatchlistPageRoutingModule {}
+export class WatchlistPageRoutingModule {
+}

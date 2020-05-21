@@ -6,6 +6,7 @@ import {Router} from '@angular/router';
 import {Movie} from '../../model/movie';
 import {User} from '../../model/user';
 import {AuthenticationService} from '../../shared/authentication-service';
+import {NavController} from '@ionic/angular';
 
 @Component({
     selector: 'app-account',
@@ -20,7 +21,9 @@ export class AccountPage implements OnInit {
     userWatchList: Movie[] = [];
     userFavoriteList: Movie[] = [];
 
-    constructor(private movieService: MovieService, private coreService: CoreService, public slider: SliderComponent, private route: Router, private authService: AuthenticationService) {
+    constructor(private movieService: MovieService,
+                private nav: NavController,
+                private coreService: CoreService, public slider: SliderComponent, private route: Router, private authService: AuthenticationService) {
         this.coreService.menuEnable = true;
     }
 
@@ -42,5 +45,9 @@ export class AccountPage implements OnInit {
             setTimeout(() => {
             }, 150);
         });
+    }
+
+    goBack() {
+        this.nav.back();
     }
 }

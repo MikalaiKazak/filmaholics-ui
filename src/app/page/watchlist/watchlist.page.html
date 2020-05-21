@@ -1,13 +1,13 @@
 <ion-content>
 
-    <div class="movie-poster-card" *ngIf="watchList">
+    <div *ngIf="watchList" class="movie-poster-card">
         <ion-grid>
             <ion-row>
                 <ion-col *ngFor="let movie of watchList" size-md="3" size-sm="4" size-xl="2" size-xs="6"
                          style="text-align: center; padding: 0;">
                     <ion-card>
-                        <ion-button class="deleteBtn" fill="solid" color="danger" shape="round"
-                                    (click)="deleteFormWatchList(movie)">
+                        <ion-button (click)="deleteFormWatchList(movie)" class="deleteBtn" color="danger" fill="solid"
+                                    shape="round">
                             <ion-icon name="trash"></ion-icon>
                         </ion-button>
                         <ion-img (ionError)="coreService.handleImgError($event)"

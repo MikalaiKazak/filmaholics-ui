@@ -10,6 +10,7 @@ import {AuthenticationService} from './authentication-service';
 import {AngularFireDatabase} from '@angular/fire/database';
 import {environment} from '../../environments/environment';
 import {AngularFirestore} from '@angular/fire/firestore';
+import {GenreResponse} from '../model/genre';
 
 
 @Injectable({
@@ -30,6 +31,17 @@ export class MovieService {
         return this.http.get(`${environment.tmdbUrl}` + '/movie/latest', {params: queryParams}).pipe(
             map((response: MovieResponse) => {
                 return response.results;
+            })
+        );
+    }
+
+    getGenre() {
+        const queryParams = {
+            api_key: `${environment.tmdbApiKey}`
+        };
+        return this.http.get(`${environment.tmdbUrl}` + '/genre/movie/list', {params: queryParams}).pipe(
+            map((response: GenreResponse) => {
+                return response.genres;
             })
         );
     }
@@ -96,7 +108,6 @@ export class MovieService {
                 return response.results;
             }),
             catchError(err => {
-                console.log(err);
                 return throwError('err');
             })
         );
@@ -217,7 +228,7 @@ export class MovieService {
         return this.afStore.doc(`data/${userUid}`).collection('ratings').valueChanges();
     }
 
-    getMovieVideo() {
-
+    getMovieVideo(movieId: string) {
+        return 'http://localhost:8080/api/v1/files/' + movieId;
     }
 }

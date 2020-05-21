@@ -1,25 +1,22 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons class="nav-logo">
-      <ion-img src="assets/image/logo_words.png"></ion-img>
-    </ion-buttons>
-  </ion-toolbar>
-  <ion-toolbar>
-    <ion-searchbar (ionFocus)="openSearchPage()" animated placeholder="Search"></ion-searchbar>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button (click)="goBack()">
+                <ion-icon name="arrow-back"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-buttons class="nav-logo">
+            <ion-img src="assets/image/logo_words.png"></ion-img>
+        </ion-buttons>
+    </ion-toolbar>
+    <ion-toolbar>
+        <ion-searchbar (ionFocus)="openSearchPage()" animated placeholder="Search"></ion-searchbar>
+    </ion-toolbar>
 </ion-header>
 
-
-<ion-content padding>
-  <div class="embedresize">
-    <iframe width="auto"
-            height="auto"
-            [src]="https://www.youtube.com/embed/feQS7GpsVVI"
-            frameborder="0"
-            allowfullscreen
-            allow="autoplay">
-    </iframe>
-  </div>
-</ion-content>
-
-
+<iframe [src]="videoUrl"
+        allow="autoplay;  picture-in-picture; gyroscope"
+        allowfullscreen
+        class="movie_video" controls
+        controlsList="nodownload">
+</iframe>

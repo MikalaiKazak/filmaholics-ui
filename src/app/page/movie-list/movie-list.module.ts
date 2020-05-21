@@ -7,7 +7,7 @@ import {IonicModule} from '@ionic/angular';
 import {MovieListPageRoutingModule} from './movie-list-routing.module';
 
 import {MovieListPage} from './movie-list.page';
-import {ComponentsModule} from "../../core/components.module";
+import {ComponentsModule} from '../../core/components.module';
 
 @NgModule({
     imports: [

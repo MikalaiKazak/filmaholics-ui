@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {CoreService} from '../../shared/core.service';
 import {MovieService} from '../../shared/movie.service';
-import {IonInfiniteScroll} from '@ionic/angular';
+import {IonInfiniteScroll, NavController} from '@ionic/angular';
 import {Movie} from '../../model/movie';
 import {ActivatedRoute, Router} from '@angular/router';
 
@@ -18,11 +18,14 @@ export class MovieListPage implements OnInit {
     selectedCategory = 'popular';
     isDataLoaded = false;
 
-    constructor(private coreService: CoreService, private movieService: MovieService, private activatedRoute: ActivatedRoute, private route: Router) {
+    constructor(private coreService: CoreService,
+                private nav: NavController,
+                private movieService: MovieService, private activatedRoute: ActivatedRoute, private route: Router) {
         coreService.menuEnable = true;
     }
 
     ngOnInit(): void {
+        this.isDataLoaded = false;
         this.movieList = [];
         this.pageCount = 1;
         this.selectedCategory = this.activatedRoute.snapshot.paramMap.get('category');
@@ -41,6 +44,10 @@ export class MovieListPage implements OnInit {
             setTimeout(() => {
             }, 150);
         });
+    }
+
+    goBack() {
+        this.nav.back();
     }
 
     private getMovies(category: string, pageNumber: number) {

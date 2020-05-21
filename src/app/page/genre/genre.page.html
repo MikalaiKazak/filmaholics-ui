@@ -1,0 +1,41 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button (click)="goBack()">
+                <ion-icon name="arrow-back"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-buttons class="nav-logo">
+            <ion-img src="assets/image/logo_words.png"></ion-img>
+        </ion-buttons>
+    </ion-toolbar>
+    <ion-toolbar>
+        <ion-searchbar (ionFocus)="openSearchPage()" animated placeholder="Search"></ion-searchbar>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <loading-icon *ngIf="!genreList || !isDataLoaded"></loading-icon>
+
+    <ion-grid *ngIf="isDataLoaded && genreList">
+
+        <ion-row style="justify-content: left">
+            <ion-col *ngFor="let genre of genreList" size-md="4" size-sm="4" size-xl="3" size-xs="12"
+                     style="text-align: center; padding: 0;">
+                <div class="genreWrapper">
+                    <ion-button
+                            [queryParams]="{genre : genre.id}"
+                            [routerLink]="['/movie-list/', 'category']"
+                            class="genreLabel"
+                            color="danger"
+                            fill="solid">
+                        {{genre.name}}
+                    </ion-button>
+                </div>
+            </ion-col>
+
+        </ion-row>
+
+    </ion-grid>
+</ion-content>

@@ -1,14 +1,5 @@
 import {Injectable} from '@angular/core';
-import {
-    ActivatedRouteSnapshot,
-    CanActivate,
-    CanLoad,
-    Route,
-    Router,
-    RouterStateSnapshot,
-    UrlSegment,
-    UrlTree
-} from '@angular/router';
+import {ActivatedRouteSnapshot, CanActivate, CanLoad, Route, Router, RouterStateSnapshot, UrlSegment, UrlTree} from '@angular/router';
 import {Observable} from 'rxjs';
 import {AuthenticationService} from './authentication-service';
 
@@ -30,15 +21,17 @@ export class AuthGuard implements CanActivate, CanLoad {
         | UrlTree {
         return new Promise(async (resolve, reject) => {
             try {
-                this.authenticationService.getCurrentUser()
-                    .then(data => {
-                        if (data) {
-                            resolve(true);
+                this.authenticationService.isLoggedIn().then(
+                    (val) => {
+                        if (val) {
+                            resolve(val);
                         } else {
-                            reject('No user logged in');
+                            reject(val);
                             this.router.navigateByUrl('/login');
+                            console.log(val);
                         }
-                    });
+                    }
+                );
             } catch (error) {
                 reject(error);
             }
@@ -48,15 +41,16 @@ export class AuthGuard implements CanActivate, CanLoad {
     canLoad(route: Route, segments: UrlSegment[]): Observable<boolean> | Promise<boolean> | boolean {
         return new Promise(async (resolve, reject) => {
             try {
-                this.authenticationService.getCurrentUser()
-                    .then(data => {
-                        if (data) {
+                this.authenticationService.isLoggedIn().then(
+                    (val) => {
+                        if (val) {
                             reject('user logged in');
                             this.router.navigateByUrl('/home');
                         } else {
                             resolve(true);
                         }
-                    });
+                    }
+                );
             } catch (error) {
                 resolve(true);
             }

@@ -33,9 +33,26 @@ export class AuthenticationService {
     }
 
     // Login in with email/password
-    SignIn(email, password): Promise<firebase.auth.UserCredential> {
-        return this.ngFireAuth.auth.signInWithEmailAndPassword(email, password);
+    SignIn(email, password) {
+        return new Promise(resolve => {
+            return this.ngFireAuth.auth.signInWithEmailAndPassword(email, password)
+                .then(response => {
+                    if (response.user.emailVerified === true) {
+                        resolve('success');
+                    } else {
+                        resolve('verify');
+                    }
+                }).catch(err => {
+                    if (err.code === 'auth/wrong-password') {
+                        resolve('password');
+                    } else {
+                        console.error(err.code);
+                        resolve(false);
+                    }
+                });
+        });
     }
+
 
     // Register user with email/password
     async RegisterUser(email, password): Promise<firebase.auth.UserCredential> {
@@ -98,7 +115,7 @@ export class AuthenticationService {
             await new Promise((resolve, reject) => {
                 this.ngFireAuth.auth.onAuthStateChanged(
                     user => {
-                        if (user) {
+                        if (user && user.emailVerified) {
                             resolve(user);
                         } else {
                             reject('no user logged in');

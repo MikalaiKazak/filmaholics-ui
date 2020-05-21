@@ -1,5 +1,11 @@
 {
   "name": "ionic-form-ui",
   "integrations": {},
-  "type": "angular"
+  "type": "angular",
+  "proxies": [
+    {
+      "path": "/api",
+      "proxyUrl": "http://localhost:8080/api/"
+    }
+  ]
 }

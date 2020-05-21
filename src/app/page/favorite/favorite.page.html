@@ -2,13 +2,14 @@
 
     <loading-icon *ngIf="!favorites"></loading-icon>
 
-    <div class="movie-poster-card" *ngIf="favorites">
+    <div *ngIf="favorites" class="movie-poster-card">
         <ion-grid>
             <ion-row>
                 <ion-col *ngFor="let movie of favorites" size-md="3" size-sm="4" size-xl="2" size-xs="6"
                          style="text-align: center; padding: 0;">
                     <ion-card>
-                        <ion-button class="deleteBtn" fill="solid" color="danger" shape="round" (click)="deleteFromFavorite(movie)">
+                        <ion-button (click)="deleteFromFavorite(movie)" class="deleteBtn" color="danger" fill="solid"
+                                    shape="round">
                             <ion-icon name="trash"></ion-icon>
                         </ion-button>
                         <ion-img (ionError)="coreService.handleImgError($event)"

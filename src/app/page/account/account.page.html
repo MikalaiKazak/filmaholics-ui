@@ -1,7 +1,9 @@
 <ion-header>
     <ion-toolbar>
         <ion-buttons slot="start">
-            <ion-back-button></ion-back-button>
+            <ion-button (click)="goBack()">
+                <ion-icon name="arrow-back"></ion-icon>
+            </ion-button>
         </ion-buttons>
         <ion-buttons class="nav-logo">
             <ion-img src="assets/image/logo_words.png"></ion-img>
@@ -23,7 +25,7 @@
                     <ion-label>Watchlist</ion-label>
                 </ion-tab-button>
 
-                <ion-tab-button tab="favorite" selected>
+                <ion-tab-button selected tab="favorite">
                     <ion-icon name="heart"></ion-icon>
                     <ion-label>Favorites</ion-label>
                 </ion-tab-button>

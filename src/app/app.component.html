@@ -9,13 +9,14 @@
             <ion-content>
                 <ion-list>
                     <ion-menu-toggle auto-hide="false">
-                        <ion-item [disabled]="!p.visible" [routerDirection]="'forward'" [routerLink]="[p.url]" *ngFor="let p of navigate">
+                        <ion-item *ngFor="let p of navigate" [disabled]="!p.visible" [routerDirection]="'forward'"
+                                  [routerLink]="[p.url]">
                             <ion-icon [name]="p.icon"></ion-icon>
                             <ion-label>
                                 <h2>{{p.title}}</h2>
                             </ion-label>
                         </ion-item>
-                        <ion-item [disabled]="!auth.isLoggedIn" (click)="auth.SignOut()"  [routerLink]="">
+                        <ion-item (click)="signOut()" [disabled]="!auth.isLoggedIn" [routerLink]="">
                             <ion-icon name="exit"></ion-icon>
                             <ion-label>
                                 <h2>Logout</h2>

@@ -30,7 +30,7 @@ export class CoreService {
 
     async showToastMessage(message: string, dur: number, pos: string) {
         const toast = await this.toastCtrl.create({
-            position: pos,
+            position: 'bottom',
             message,
             duration: dur
         });
@@ -47,7 +47,6 @@ export class CoreService {
     }
 
     hideLoadingIcon() {
-        console.log('Hide Before');
         if (this.loadingIcon) {
             this.loadingIcon.dismiss();
         }

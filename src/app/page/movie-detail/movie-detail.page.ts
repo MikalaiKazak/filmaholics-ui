@@ -5,7 +5,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Movie} from '../../model/movie';
 import {Cast} from '../../model/cast';
 import {SliderComponent} from '../../core/slider/slider.component';
-import {AlertController, IonSlides, ToastController} from '@ionic/angular';
+import {AlertController, IonSlides, NavController, ToastController} from '@ionic/angular';
 import {AuthenticationService} from '../../shared/authentication-service';
 
 @Component({
@@ -33,6 +33,7 @@ export class MovieDetailPage implements OnInit {
                 private route: Router,
                 private movieService: MovieService,
                 private coreService: CoreService,
+                private nav: NavController,
                 private slider: SliderComponent,
                 private toastCtrl: ToastController,
                 private alertCtrl: AlertController,
@@ -160,15 +161,18 @@ export class MovieDetailPage implements OnInit {
         });
     }
 
-    getMovieVideo() {
-        console.log('dsfdsf');
-    }
-
     getSimilarMovies() {
         this.isSimilarMovieLoad = false;
         this.movieService.getSimilarMovies(this.movieID).subscribe(d => {
-            this.similarMovies = d;
-            this.isSimilarMovieLoad = true;
+            if (d && d.length > 0) {
+                this.similarMovies = d;
+                this.isSimilarMovieLoad = true;
+            }
+
         });
+    }
+
+    goBack() {
+        this.nav.back();
     }
 }

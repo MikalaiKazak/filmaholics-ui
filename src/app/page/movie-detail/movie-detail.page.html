@@ -1,7 +1,9 @@
 <ion-header>
     <ion-toolbar>
         <ion-buttons slot="start">
-            <ion-back-button></ion-back-button>
+            <ion-button (click)="goBack()">
+                <ion-icon name="arrow-back"></ion-icon>
+            </ion-button>
         </ion-buttons>
         <ion-buttons class="nav-logo">
             <ion-img src="assets/image/logo_words.png"></ion-img>
@@ -18,14 +20,16 @@
 
     <ion-grid *ngIf="movie">
 
-        <div class="movie-overview"
-             [ngStyle]="{backgroundImage: 'url(https://image.tmdb.org/t/p/w1280/' + movie.backdrop_path + ')'}">
+        <div [ngStyle]="{backgroundImage: 'url(https://image.tmdb.org/t/p/w1280/' + movie.backdrop_path + ')'}"
+             class="movie-overview">
             <ion-row>
 
-                <ion-col size-xl="3" size-md="4" size-xs="12" size-sm="5" style=" z-index: 3;">
+                <ion-col size-md="4" size-sm="5" size-xl="3" size-xs="12" style=" z-index: 3;">
 
                     <div class="movie-poster">
-                        <div class="hoverPlay" (click)="getMovieVideo()"><ion-icon name="play"></ion-icon></div>
+                        <div [routerLink]="['/movieplay/', movie.id]" class="hoverPlay">
+                            <ion-icon name="play"></ion-icon>
+                        </div>
                         <img onError="this.src = '../assets/images/no-image-poster.png'"
                              src="https://image.tmdb.org/t/p/w1280/{{movie.poster_path}}"/>
                     </div>
@@ -42,12 +46,15 @@
 
                         <hr>
 
-                        <h5 class="release-data"><ion-icon name="calendar-outline"></ion-icon> {{movie.release_date}}</h5>
+                        <h5 class="release-data">
+                            <ion-icon name="calendar-outline"></ion-icon>
+                            {{movie.release_date}}</h5>
 
                         <hr>
 
-                        <span class="genre" *ngFor="let genre of movie.genres">
-                            <ion-label fill="clear" [routerLink]="['/movie-list/', 'category']" [queryParams]="{genre : genre.id}">{{genre.name}}
+                        <span *ngFor="let genre of movie.genres" class="genre">
+                            <ion-label [queryParams]="{genre : genre.id}" [routerLink]="['/movie-list/', 'category']"
+                                       fill="clear">{{genre.name}}
                             </ion-label>
                         </span>
 
@@ -62,10 +69,10 @@
                         <hr>
 
                         <ion-buttons class="profile-btn">
-                            <ion-button shape="round" (click)="addToFavorite()">
+                            <ion-button (click)="addToFavorite()" shape="round">
                                 <ion-icon name="heart"></ion-icon>
                             </ion-button>
-                            <ion-button shape="round" (click)="addToWatchList()">
+                            <ion-button (click)="addToWatchList()" shape="round">
                                 <ion-icon name="bookmarks"></ion-icon>
                             </ion-button>
                             <ion-button shape="round">
@@ -86,7 +93,7 @@
         </div>
 
 
-        <loading-icon  *ngIf="!isCastLoad"></loading-icon>
+        <loading-icon *ngIf="!isCastLoad"></loading-icon>
         <ion-row *ngIf="isCastLoad">
             <ion-col>
                 <div class="cast-and-crew">
@@ -114,8 +121,8 @@
             </ion-col>
         </ion-row>
 
-        <loading-icon  *ngIf="!isSimilarMovieLoad"></loading-icon>
-        <ion-row  *ngIf="isSimilarMovieLoad">
+        <loading-icon *ngIf="!isSimilarMovieLoad"></loading-icon>
+        <ion-row *ngIf="isSimilarMovieLoad">
             <ion-col>
                 <div class="divider-wrapper title">
                     <ion-item-divider><a [routerLink]="['/movie-list/', 'popular']"
@@ -123,9 +130,9 @@
                     </ion-item-divider>
                 </div>
 
-                <div (click)="slider.prevSlide(similarMovieSlider)"
+                <div (click)="slider.prevSlide(similarMovieSlider)" *ngIf="isSimilarMovieLoad"
                      class="swiper-button-prev swiper-button-black"></div>
-                <ion-slides #similarMovieSlider [options]="slider.similarSlideOpts">
+                <ion-slides #similarMovieSlider *ngIf="isSimilarMovieLoad" [options]="slider.similarSlideOpts">
                     <ion-slide *ngFor="let movie of similarMovies">
                         <ion-row>
                             <ion-col style="text-align: center; padding: 0;">
@@ -140,7 +147,7 @@
                         </ion-row>
                     </ion-slide>
                 </ion-slides>
-                <div (click)="slider.nextSlide(similarMovieSlider)"
+                <div (click)="slider.nextSlide(similarMovieSlider)" *ngIf="isSimilarMovieLoad"
                      class="swiper-button-next swiper-button-black"></div>
             </ion-col>
         </ion-row>

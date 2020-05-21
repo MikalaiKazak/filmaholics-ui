@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {AuthenticationService} from '../../shared/authentication-service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CoreService} from '../../shared/core.service';
+import {NavController} from '@ionic/angular';
 
 @Component({
     selector: 'app-registration',
@@ -15,6 +16,7 @@ export class RegistrationPage implements OnInit {
     public registrationForm: FormGroup;
 
     constructor(
+        private nav: NavController,
         private coreService: CoreService,
         private formBuilder: FormBuilder,
         private authService: AuthenticationService,
@@ -44,5 +46,9 @@ export class RegistrationPage implements OnInit {
                     this.coreService.hideLoadingIcon();
                     this.coreService.showAlertMessage('Error', err.message);
                 });
+    }
+
+    goBack() {
+        this.nav.back();
     }
 }
