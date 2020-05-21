@@ -97,14 +97,27 @@ export class MovieService {
         );
     }
 
-    searchMovie(searchText: string): Observable<Movie[]> {
+    searchMovie(searchText: string, region: string, year: string, adult: boolean, pageNumber: number): Observable<Movie[]> {
         const queryParams = {
             api_key: `${environment.tmdbApiKey}`,
-            query: searchText
+            query: searchText,
+            include_adult: adult ? true : false,
+            page: pageNumber
         };
+
+        if (region && !(region === ' ')) {
+            Object.assign(queryParams, {region});
+        }
+
+        if (year && !(year === ' ')) {
+            Object.assign(queryParams, {year});
+        }
+
+        console.log(queryParams);
 
         return this.http.get(`${environment.tmdbUrl}` + '/search/movie', {params: queryParams}).pipe(
             map((response: MovieResponse) => {
+                console.log(response);
                 return response.results;
             }),
             catchError(err => {

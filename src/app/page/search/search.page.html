@@ -10,8 +10,37 @@
         </ion-buttons>
     </ion-toolbar>
     <ion-toolbar>
-        <ion-searchbar #searchbar (ionChange)="searchMovie(searchText)" [(ngModel)]="searchText"
+        <ion-searchbar #searchbar (ionChange)="searchMovie(searchText, 1)" [(ngModel)]="searchText"
                        debounce="500" placeholder="Search"></ion-searchbar>
+        <ion-buttons slot="end">
+            <ionic-context-menu icon="menu">
+                <ion-item>
+                    <ion-label>Region:</ion-label>
+                    <ion-select interface="popover" [(ngModel)]="selectedRegion" (ionChange)="getCountry(selectedRegion)"
+                                [selectedText]="selectedRegion">
+                        <ion-select-option *ngFor="let region of regions" [value]="region.code">
+                            {{region.region}}
+                        </ion-select-option>
+                    </ion-select>
+                </ion-item>
+                <ion-item>
+                    <ion-label>Year:</ion-label>
+                    <ion-select interface="popover" [(ngModel)]="selectedYear" (ionChange)="getYear(selectedYear)"
+                                [selectedText]="selectedYear">
+                        <ion-select-option  value=" ">
+                            Any
+                        </ion-select-option>
+                        <ion-select-option *ngFor="let year of getRangeOfYears()" [value]="year">
+                            {{year}}
+                        </ion-select-option>
+                    </ion-select>
+                </ion-item>
+                <ion-item>
+                    <ion-label>Include Adult:</ion-label>
+                    <ion-toggle [(ngModel)]="adult" (ionChange)="toggleAdult()"></ion-toggle>
+                </ion-item>
+            </ionic-context-menu>
+        </ion-buttons>
     </ion-toolbar>
 </ion-header>
 
@@ -21,7 +50,7 @@
         <ion-row>
             <ion-col *ngFor="let movie of movieList" size-md="3" size-sm="4" size-xl="2" size-xs="6"
                      style="display:flex;  text-align: center; align-items: center; padding: 0;">
-                <ion-card>
+                <ion-card *ngIf="movie">
                     <span class="rating">{{movie.vote_average}}</span>
                     <ion-img (ionError)="coreService.handleImgError($event)"
                              [alt]="movie.title"
@@ -37,4 +66,10 @@
             </ion-col>
         </ion-row>
     </ion-grid>
+
+    <ion-infinite-scroll (ionInfinite)="loadMoreMovies()" threshold="100px">
+        <ion-infinite-scroll-content
+                loadingSpinner="circles">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 </ion-content>

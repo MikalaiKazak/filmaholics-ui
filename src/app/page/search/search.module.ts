@@ -6,6 +6,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {IonicModule} from '@ionic/angular';
 import {ComponentsModule} from '../../core/components.module';
 import {SearchPage} from './search.page';
+import {IonicContextMenuModule} from 'ionic-context-menu';
 
 
 const routes: Routes = [
@@ -21,7 +22,8 @@ const routes: Routes = [
         FormsModule,
         IonicModule,
         ComponentsModule,
-        RouterModule.forChild(routes)
+        RouterModule.forChild(routes),
+        IonicContextMenuModule,
     ],
     declarations: [SearchPage]
 })
