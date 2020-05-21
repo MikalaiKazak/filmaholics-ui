@@ -24,6 +24,7 @@ export class MovieDetailPage implements OnInit {
     isMovieReviewLoad: boolean;
     isCastLoad: boolean;
     movie: Movie;
+    rate: number = 0;
     castList: Cast[] = [];
     similarMovies: Movie[] = [];
     reviews: MovieReview[] = [];
@@ -187,5 +188,13 @@ export class MovieDetailPage implements OnInit {
                 this.isMovieReviewLoad = true;
             }
         });
+    }
+
+    rateMovie(i: any) {
+        if (i === this.rate) {
+            this.rate = 0;
+        } else {
+            this.rate = i;
+        }
     }
 }

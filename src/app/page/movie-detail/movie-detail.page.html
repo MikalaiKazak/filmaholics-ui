@@ -75,9 +75,16 @@
                             <ion-button (click)="addToWatchList()" shape="round">
                                 <ion-icon name="bookmarks"></ion-icon>
                             </ion-button>
-                            <ion-button shape="round">
-                                <ion-icon name="star"></ion-icon>
-                            </ion-button>
+                            <ion-buttons>
+                                <ion-button class="movie-rate"
+                                            (click)="rateMovie(i)"
+                                            *ngFor="let i of [1]">
+                                    <ion-icon
+                                            [ngClass]="{'active': rate >= i}"
+                                            name="star">
+                                    </ion-icon>
+                                </ion-button>
+                            </ion-buttons>
                         </ion-buttons>
 
                         <hr>

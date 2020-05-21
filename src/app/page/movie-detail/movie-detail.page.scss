@@ -217,6 +217,11 @@ ion-card:hover {
   overflow: hidden;
 }
 
+.movie-rate {
+  .active {
+    color: #cd4851;
+  }
+}
 
 @media screen and (max-width: 720px) {
   .movie-info {
