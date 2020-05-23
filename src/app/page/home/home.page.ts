@@ -39,7 +39,7 @@ export class HomePage implements OnInit {
     }
 
     ngOnInit(): void {
-        this.getMovies('topPickForYou', 1);
+        this.getRecommendations();
         this.getMovies('upcoming', 1);
         this.getMovies('popular', 1);
         this.getMovies('nowPlaying', 1);
@@ -54,20 +54,28 @@ export class HomePage implements OnInit {
         });
     }
 
+    getRecommendations() {
+        this.movieService.getFavorites().subscribe((favoriteMovies: Movie[]) => {
+            if (favoriteMovies) {
+                favoriteMovies.map(data => data.id)
+                    .forEach(movieId => {
+                        this.movieService.getRecommendations(movieId).subscribe(recommendationMoviesResponse => {
+                            this.topPickForYouMovieList = this.topPickForYouMovieList.concat(recommendationMoviesResponse
+                                .filter(recommendationMovie => recommendationMovie.vote_average > 7));
+                            this.isTopPickForYouListLoad = true;
+                        });
+                    });
+            }
+        });
+    }
+
     private getMovies(category: string, pageNumber: number) {
-        this.isTopPickForYouListLoad = false;
         this.isPopularMovieListLoaded = false;
         this.isUpcomingMovieListLoaded = false;
         this.isNowPlayingMovieListLoaded = false;
         this.isTopRatedMovieListLoaded = false;
         this.isLatestMovieListLoaded = false;
         switch (category) {
-            case 'topPickForYou':
-                this.movieService.getTopNowPlayingMovies(pageNumber).subscribe(movieResponse => {
-                    this.topPickForYouMovieList = this.topPickForYouMovieList.concat(movieResponse);
-                    this.isTopPickForYouListLoad = true;
-                });
-                break;
             case 'upcoming':
                 this.movieService.getTopUpcomingMovies(pageNumber).subscribe(movieResponse => {
                     this.upcomingMovieList = this.upcomingMovieList.concat(movieResponse);

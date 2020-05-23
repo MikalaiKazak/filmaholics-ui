@@ -274,4 +274,16 @@ export class MovieService {
     getMovieVideo(movieId: string) {
         return 'http://localhost:8080/api/v1/files/' + movieId;
     }
+
+    getRecommendations(movieID: number) {
+        const queryParams = {
+            api_key: `${environment.tmdbApiKey}`
+        };
+        const url = `${environment.tmdbUrl}` + '/movie/' + movieID + '/recommendations';
+        return this.http.get(url, {params: queryParams}).pipe(
+            map((response: MovieResponse) => {
+                return response.results;
+            })
+        );
+    }
 }
