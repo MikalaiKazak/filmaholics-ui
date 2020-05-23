@@ -101,8 +101,8 @@ export class MovieService {
         const queryParams = {
             api_key: `${environment.tmdbApiKey}`,
             query: searchText,
-            include_adult: adult ? true : false,
-            page: pageNumber
+            include_adult: (adult ? 'true' : 'false'),
+            page: pageNumber.toString()
         };
 
         if (region && !(region === ' ')) {
