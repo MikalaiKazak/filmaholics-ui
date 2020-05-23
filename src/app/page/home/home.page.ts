@@ -18,15 +18,18 @@ export class HomePage implements OnInit {
     @ViewChild('upcomingMovieSlider', {static: false}) upcomingMovieSlider: IonSlides;
     @ViewChild('nowPlayingSlider', {static: false}) nowPlayingSlider: IonSlides;
     @ViewChild('topRatedMovieSlider', {static: false}) topRatedMovieSlider: IonSlides;
+    @ViewChild('topPickForYouSlider', {static: false}) topPickForYouSlider: IonSlides;
 
     latestMovieList: Movie[] = [];
     popularMovieList: Movie[] = [];
     upcomingMovieList: Movie[] = [];
     nowPlayingMovieList: Movie[] = [];
     topRatedMovieList: Movie[] = [];
+    topPickForYouMovieList: Movie[] = [];
 
     isLatestMovieListLoaded = false;
     isPopularMovieListLoaded = false;
+    isTopPickForYouListLoad = false;
     isUpcomingMovieListLoaded = false;
     isNowPlayingMovieListLoaded = false;
     isTopRatedMovieListLoaded = false;
@@ -36,6 +39,7 @@ export class HomePage implements OnInit {
     }
 
     ngOnInit(): void {
+        this.getMovies('topPickForYou', 1);
         this.getMovies('upcoming', 1);
         this.getMovies('popular', 1);
         this.getMovies('nowPlaying', 1);
@@ -51,12 +55,19 @@ export class HomePage implements OnInit {
     }
 
     private getMovies(category: string, pageNumber: number) {
+        this.isTopPickForYouListLoad = false;
         this.isPopularMovieListLoaded = false;
         this.isUpcomingMovieListLoaded = false;
         this.isNowPlayingMovieListLoaded = false;
         this.isTopRatedMovieListLoaded = false;
         this.isLatestMovieListLoaded = false;
         switch (category) {
+            case 'topPickForYou':
+                this.movieService.getTopNowPlayingMovies(pageNumber).subscribe(movieResponse => {
+                    this.topPickForYouMovieList = this.topPickForYouMovieList.concat(movieResponse);
+                    this.isTopPickForYouListLoad = true;
+                });
+                break;
             case 'upcoming':
                 this.movieService.getTopUpcomingMovies(pageNumber).subscribe(movieResponse => {
                     this.upcomingMovieList = this.upcomingMovieList.concat(movieResponse);

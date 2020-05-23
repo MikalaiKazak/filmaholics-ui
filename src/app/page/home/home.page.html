@@ -34,6 +34,34 @@
         </ion-col>
     </ion-row>
 
+    <loading-icon *ngIf="!isTopPickForYouListLoad"></loading-icon>
+    <ion-row *ngIf="isTopPickForYouListLoad">
+        <ion-col>
+            <div class="divider-wrapper">
+                <ion-item-divider><a class="divider">Top pick for you</a>
+                </ion-item-divider>
+            </div>
+
+            <div (click)="slider.prevSlide(topPickForYouSlider)" class="swiper-button-prev swiper-button-black"></div>
+            <ion-slides #topPickForYouSlider [options]="slider.slideOpts">
+                <ion-slide *ngFor="let movie of topPickForYouMovieList">
+                    <ion-row>
+                        <ion-col style="text-align: center; padding: 0;">
+                            <ion-card>
+                                <span class="rating">{{movie.vote_average}}</span>
+                                <ion-img (ionError)="coreService.handleImgError($event)"
+                                         [alt]="movie.title"
+                                         [routerLink]="['/movie-detail/', movie.id]"
+                                         src="https://image.tmdb.org/t/p/w500/{{movie.poster_path}}"></ion-img>
+                            </ion-card>
+                        </ion-col>
+                    </ion-row>
+                </ion-slide>
+            </ion-slides>
+            <div (click)="slider.nextSlide(topPickForYouSlider)" class="swiper-button-next swiper-button-black"></div>
+        </ion-col>
+    </ion-row>
+
 
     <loading-icon *ngIf="!isPopularMovieListLoaded"></loading-icon>
     <ion-row>
