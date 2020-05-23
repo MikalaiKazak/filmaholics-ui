@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons class="nav-logo">
+      <ion-img src="assets/image/logo_words.png"></ion-img>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar (ionFocus)="openSearchPage()" animated placeholder="Search"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+  <ion-grid >
+
+    <ion-row class="ion-align-items-center">
+
+      <ion-col class="ion-align-self-start" offset-xs="0" size-xs="12" offset-xl="1" size-xl="5" offset-sm="1" size-sm="5">
+
+        <h1>recommendations</h1>
+
+        <p>
+          Filmaholic helps you find movies you will like. Rate movies to build a custom taste profile, then Filmaholic recommends other movies for you to watch
+        </p>
+
+      </ion-col>
+
+      <ion-col class="ion-align-self-center" size="4" size-xs="12" size-xl="4" size-sm="5">
+        <img src='/assets/image/main-screen.png' alt="recommendations"/>
+      </ion-col>
+
+    </ion-row>
+
+    <ion-row class="ion-align-items-center" style="margin-top: 40px;">
+
+      <ion-col class="ion-align-self-start" offset-xl="1" size-xl="5" size-xs="12" offset-xs="0" offset-sm="1" size-sm="5">
+
+        <h1>rich data</h1>
+
+        <p>
+          Learn more about movies with rich data, images, and trailers. Browse movies by community-applied tags, or apply your own tags. Explore the database with expressive search tools.
+        </p>
+
+      </ion-col>
+
+      <ion-col class="ion-align-self-center" size-xs="12" size-xl="4" size-sm="5">
+        <img src='/assets/image/movie-details-fullpage.png' alt="rich data"/>
+      </ion-col>
+
+    </ion-row>
+
+  </ion-grid>
+
+
+</ion-content>

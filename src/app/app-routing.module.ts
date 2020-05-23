@@ -61,6 +61,10 @@ const routes: Routes = [
         path: 'genre',
         loadChildren: () => import('./page/genre/genre.module').then(m => m.GenrePageModule), canActivate: [AuthGuard]
     },
+    {
+        path: 'about',
+        loadChildren: () => import('./page/about/about.module').then(m => m.AboutPageModule)
+    },
 ];
 
 @NgModule({

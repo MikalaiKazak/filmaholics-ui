@@ -63,6 +63,12 @@ export class AppComponent implements OnInit {
                     url: '/account',
                     icon: 'person-circle-outline',
                     visible: this.auth.isLoggedIn
+                },
+                {
+                    title: 'About',
+                    url: '/about',
+                    icon: 'information-circle-outline',
+                    visible: this.auth.isLoggedIn
                 }
             ];
     }
