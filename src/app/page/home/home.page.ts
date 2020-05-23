@@ -57,10 +57,11 @@ export class HomePage implements OnInit {
     getRecommendations() {
         this.movieService.getFavorites().subscribe((favoriteMovies: Movie[]) => {
             if (favoriteMovies) {
-                favoriteMovies.map(data => data.id)
-                    .forEach(movieId => {
-                        this.movieService.getRecommendations(movieId).subscribe(recommendationMoviesResponse => {
+                favoriteMovies
+                    .forEach(favoriteMovie => {
+                        this.movieService.getRecommendations(favoriteMovie.id).subscribe((recommendationMoviesResponse: Movie[]) => {
                             this.topPickForYouMovieList = this.topPickForYouMovieList.concat(recommendationMoviesResponse
+                                .filter(recommendationMovie => !favoriteMovies.includes(recommendationMovie))
                                 .filter(recommendationMovie => recommendationMovie.vote_average > 7));
                             this.isTopPickForYouListLoad = true;
                         });
