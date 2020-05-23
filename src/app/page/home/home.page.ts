@@ -60,9 +60,10 @@ export class HomePage implements OnInit {
                 favoriteMovies
                     .forEach(favoriteMovie => {
                         this.movieService.getRecommendations(favoriteMovie.id).subscribe((recommendationMoviesResponse: Movie[]) => {
-                            this.topPickForYouMovieList = this.topPickForYouMovieList.concat(recommendationMoviesResponse
-                                .filter(recommendationMovie => !favoriteMovies.includes(recommendationMovie))
-                                .filter(recommendationMovie => recommendationMovie.vote_average > 7));
+                            this.topPickForYouMovieList = Array.from(new Set(this.topPickForYouMovieList.concat(recommendationMoviesResponse
+                                .filter(recommendationMovie => (!favoriteMovies.some(fm => fm.title === recommendationMovie.title)))
+                                .filter(recommendationMovie => (!this.topPickForYouMovieList.some(fm => fm.title === recommendationMovie.title)))
+                                .filter(recommendationMovie => recommendationMovie.vote_average > 7))));
                             this.isTopPickForYouListLoad = true;
                         });
                     });
