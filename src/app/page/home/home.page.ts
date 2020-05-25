@@ -57,16 +57,18 @@ export class HomePage implements OnInit {
     getRecommendations() {
         this.movieService.getFavorites().subscribe((favoriteMovies: Movie[]) => {
             if (favoriteMovies) {
-                favoriteMovies
-                    .forEach(favoriteMovie => {
-                        this.movieService.getRecommendations(favoriteMovie.id).subscribe((recommendationMoviesResponse: Movie[]) => {
-                            this.topPickForYouMovieList = Array.from(new Set(this.topPickForYouMovieList.concat(recommendationMoviesResponse
-                                .filter(recommendationMovie => (!favoriteMovies.some(fm => fm.title === recommendationMovie.title)))
-                                .filter(recommendationMovie => (!this.topPickForYouMovieList.some(fm => fm.title === recommendationMovie.title)))
-                                .filter(recommendationMovie => recommendationMovie.vote_average > 7))));
-                            this.isTopPickForYouListLoad = true;
-                        });
+                const favoriteMoviesLength = favoriteMovies.length;
+                favoriteMovies.forEach((favoriteMovie, i) => {
+                    this.movieService.getRecommendations(favoriteMovie.id).subscribe((recommendationMoviesResponse: Movie[]) => {
+                        this.topPickForYouMovieList = Array.from(new Set(this.topPickForYouMovieList.concat(recommendationMoviesResponse
+                            .filter(recommendationMovie => !(favoriteMovies.some(fm => fm.title === recommendationMovie.title)))
+                            .filter(recommendationMovie => !(this.topPickForYouMovieList.some(fm => fm.title === recommendationMovie.title)))
+                            .sort((r1, r2) => r2.vote_average - r1.vote_average)
+                            .slice(0, 15))));
+                        i++;
+                        this.isTopPickForYouListLoad = favoriteMoviesLength === i;
                     });
+                });
             }
         });
     }
