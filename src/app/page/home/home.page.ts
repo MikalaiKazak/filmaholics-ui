@@ -26,9 +26,11 @@ export class HomePage implements OnInit {
     nowPlayingMovieList: Movie[] = [];
     topRatedMovieList: Movie[] = [];
     topPickForYouMovieList: Movie[] = [];
+    recommendationFilms: Movie[] = [];
 
     isLatestMovieListLoaded = false;
     isPopularMovieListLoaded = false;
+    isRecommendationFilmsLoad = false;
     isTopPickForYouListLoad = false;
     isUpcomingMovieListLoaded = false;
     isNowPlayingMovieListLoaded = false;
@@ -55,21 +57,28 @@ export class HomePage implements OnInit {
     }
 
     getRecommendations() {
+        this.isRecommendationFilmsLoad = false;
         this.movieService.getFavorites().subscribe((favoriteMovies: Movie[]) => {
-            if (favoriteMovies) {
-                const favoriteMoviesLength = favoriteMovies.length;
-                favoriteMovies.forEach((favoriteMovie, i) => {
-                    this.movieService.getRecommendations(favoriteMovie.id).subscribe((recommendationMoviesResponse: Movie[]) => {
-                        this.topPickForYouMovieList = Array.from(new Set(this.topPickForYouMovieList.concat(recommendationMoviesResponse
+            const favoriteMoviesLength: number = favoriteMovies.length;
+            favoriteMovies.forEach((favoriteMovie: Movie, index) => {
+                this.movieService.getRecommendations(favoriteMovie.id)
+                    .subscribe((recommendationMoviesResponse: Movie[]) => {
+                        this.recommendationFilms = this.recommendationFilms.concat(recommendationMoviesResponse
                             .filter(recommendationMovie => !(favoriteMovies.some(fm => fm.title === recommendationMovie.title)))
-                            .filter(recommendationMovie => !(this.topPickForYouMovieList.some(fm => fm.title === recommendationMovie.title)))
-                            .sort((r1, r2) => r2.vote_average - r1.vote_average)
-                            .slice(0, 15))));
-                        i++;
-                        this.isTopPickForYouListLoad = favoriteMoviesLength === i;
+                            .filter(recommendationMovie => !(this.recommendationFilms.some(fm => fm.title === recommendationMovie.title)))
+                            .sort((r1, r2) => r2.vote_average - r1.vote_average))
+                            .filter(recommendationMovie => recommendationMovie.vote_average > 7)
+                            .slice(0, 16);
+                        index++;
+                        this.isRecommendationFilmsLoad = favoriteMoviesLength === index;
+                        if (this.isRecommendationFilmsLoad) {
+                            this.topPickForYouMovieList = this.recommendationFilms
+                                .sort((r1, r2) => r2.vote_average - r1.vote_average)
+                                .slice(0, 16);
+                            this.isTopPickForYouListLoad = true;
+                        }
                     });
-                });
-            }
+            });
         });
     }
 
