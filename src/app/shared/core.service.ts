@@ -8,13 +8,13 @@ import {TrailerComponent} from '../page/trailer/trailer.component';
 export class CoreService {
 
     menuEnable = false;
-    private loadingIcon: any;
+    public loadingIcon: any;
 
     constructor(
-        private alertController: AlertController,
-        private loadingCtrl: LoadingController,
-        private modalCtrl: ModalController,
-        private toastCtrl: ToastController
+        public alertController: AlertController,
+        public loadingCtrl: LoadingController,
+        public modalCtrl: ModalController,
+        public toastCtrl: ToastController
     ) {
     }
 

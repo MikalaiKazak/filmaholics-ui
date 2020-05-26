@@ -18,9 +18,9 @@ import {GenreResponse} from '../model/genre';
 })
 export class MovieService {
 
-    private readonly databaseUrl = 'https://filmaholics.firebaseio.com/';
+    public readonly databaseUrl = 'https://filmaholics.firebaseio.com/';
 
-    constructor(private http: HttpClient, private authService: AuthenticationService, private db: AngularFireDatabase, private afStore: AngularFirestore) {
+    constructor(public http: HttpClient, public authService: AuthenticationService, public db: AngularFireDatabase, public afStore: AngularFirestore) {
     }
 
     getLatestMovies(pageNumber: number): Observable<Movie[]> {

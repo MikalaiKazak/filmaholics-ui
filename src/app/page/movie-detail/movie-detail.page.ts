@@ -29,18 +29,18 @@ export class MovieDetailPage implements OnInit {
     similarMovies: Movie[] = [];
     reviews: MovieReview[] = [];
 
-    private movieID = '';
-    private trailerURL: any = null;
+    public movieID = '';
+    public trailerURL: any = null;
 
-    constructor(private activatedRoute: ActivatedRoute,
-                private route: Router,
-                private movieService: MovieService,
-                private coreService: CoreService,
-                private nav: NavController,
-                private slider: SliderComponent,
-                private toastCtrl: ToastController,
-                private alertCtrl: AlertController,
-                private authService: AuthenticationService) {
+    constructor(public activatedRoute: ActivatedRoute,
+                public route: Router,
+                public movieService: MovieService,
+                public coreService: CoreService,
+                public nav: NavController,
+                public slider: SliderComponent,
+                public toastCtrl: ToastController,
+                public alertCtrl: AlertController,
+                public authService: AuthenticationService) {
         this.coreService.menuEnable = true;
     }
 
@@ -180,7 +180,7 @@ export class MovieDetailPage implements OnInit {
         this.nav.back();
     }
 
-    private getMovieReview() {
+    public getMovieReview() {
         this.isMovieReviewLoad = false;
         this.movieService.getMovieReview(this.movieID, 1).subscribe(d => {
             if (d && d.length > 0) {

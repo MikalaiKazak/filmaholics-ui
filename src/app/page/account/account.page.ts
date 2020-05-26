@@ -21,9 +21,9 @@ export class AccountPage implements OnInit {
     userWatchList: Movie[] = [];
     userFavoriteList: Movie[] = [];
 
-    constructor(private movieService: MovieService,
-                private nav: NavController,
-                private coreService: CoreService, public slider: SliderComponent, private route: Router, private authService: AuthenticationService) {
+    constructor(public movieService: MovieService,
+                public nav: NavController,
+                public coreService: CoreService, public slider: SliderComponent, public route: Router, public authService: AuthenticationService) {
         this.coreService.menuEnable = true;
     }
 

@@ -11,11 +11,11 @@ import {NavController} from '@ionic/angular';
 })
 export class AboutPage implements OnInit {
 
-    constructor(private activatedRoute: ActivatedRoute,
-                private route: Router,
-                private movieService: MovieService,
-                private coreService: CoreService,
-                private nav: NavController) {
+    constructor(public activatedRoute: ActivatedRoute,
+                public route: Router,
+                public movieService: MovieService,
+                public coreService: CoreService,
+                public nav: NavController) {
         this.coreService.menuEnable = true;
     }
 

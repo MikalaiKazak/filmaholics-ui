@@ -15,12 +15,12 @@ export class MovieplayPage implements OnInit {
     videoUrl: any;
     movieID: any;
 
-    constructor(private activatedRoute: ActivatedRoute,
-                private route: Router,
-                private nav: NavController,
-                private sanitizer: DomSanitizer,
-                private coreService: CoreService,
-                private moviService: MovieService) {
+    constructor(public activatedRoute: ActivatedRoute,
+                public route: Router,
+                public nav: NavController,
+                public sanitizer: DomSanitizer,
+                public coreService: CoreService,
+                public moviService: MovieService) {
         this.coreService.menuEnable = true;
         this.movieID = this.activatedRoute.snapshot.paramMap.get('movieId');
 

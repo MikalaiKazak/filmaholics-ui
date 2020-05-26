@@ -11,10 +11,10 @@ export class TrailerComponent implements OnInit {
 
     videoUrl: any;
 
-    constructor(private params: NavParams,
-                private navCtrl: NavController,
-                private sanitizer: DomSanitizer,
-                private viewCtrl: ModalController) {
+    constructor(public params: NavParams,
+                public navCtrl: NavController,
+                public sanitizer: DomSanitizer,
+                public viewCtrl: ModalController) {
 
         const paramUrl = this.params.get('url');
         this.videoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(paramUrl.replace('watch?v=', 'embed/') + '?autoplay=1');

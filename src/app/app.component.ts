@@ -17,11 +17,11 @@ export class AppComponent implements OnInit {
     navigate: any;
 
     constructor(
-        private coreService: CoreService,
-        private platform: Platform,
-        private splashScreen: SplashScreen,
-        private statusBar: StatusBar,
-        private auth: AuthenticationService
+        public coreService: CoreService,
+        public platform: Platform,
+        public splashScreen: SplashScreen,
+        public statusBar: StatusBar,
+        public auth: AuthenticationService
     ) {
         this.sideMenu();
         this.initializeApp();

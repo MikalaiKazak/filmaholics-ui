@@ -15,11 +15,11 @@ export class ForgotPasswordPage implements OnInit {
     public passwordRecoverForm: FormGroup;
 
     constructor(
-        private formBuilder: FormBuilder,
-        private nav: NavController,
-        private authService: AuthenticationService,
-        private router: Router,
-        private coreService: CoreService,
+        public formBuilder: FormBuilder,
+        public nav: NavController,
+        public authService: AuthenticationService,
+        public router: Router,
+        public coreService: CoreService,
     ) {
         coreService.menuEnable = false;
     }

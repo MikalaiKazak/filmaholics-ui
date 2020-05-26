@@ -16,7 +16,7 @@ export class WatchlistPage implements OnInit {
     @ViewChild(IonInfiniteScroll, {static: false}) infiniteScroll: IonInfiniteScroll;
     watchList: Movie[];
 
-    constructor(private coreService: CoreService, private movieService: MovieService, private activatedRoute: ActivatedRoute, private route: Router, private authService: AuthenticationService) {
+    constructor(public coreService: CoreService, public movieService: MovieService, public activatedRoute: ActivatedRoute, public route: Router, public authService: AuthenticationService) {
         coreService.menuEnable = true;
     }
 

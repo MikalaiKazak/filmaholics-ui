@@ -15,11 +15,11 @@ export class LoginPage implements OnInit {
     loginForm: FormGroup;
 
     constructor(
-        private coreService: CoreService,
-        private formBuilder: FormBuilder,
-        private toastCtrl: ToastController,
-        private authService: AuthenticationService,
-        private router: Router
+        public coreService: CoreService,
+        public formBuilder: FormBuilder,
+        public toastCtrl: ToastController,
+        public authService: AuthenticationService,
+        public router: Router
     ) {
         this.coreService.menuEnable = false;
     }

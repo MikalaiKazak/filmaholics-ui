@@ -18,9 +18,9 @@ export class MovieListPage implements OnInit {
     selectedCategory = 'popular';
     isDataLoaded = false;
 
-    constructor(private coreService: CoreService,
-                private nav: NavController,
-                private movieService: MovieService, private activatedRoute: ActivatedRoute, private route: Router) {
+    constructor(public coreService: CoreService,
+                public nav: NavController,
+                public movieService: MovieService, public activatedRoute: ActivatedRoute, public route: Router) {
         coreService.menuEnable = true;
     }
 
@@ -50,7 +50,7 @@ export class MovieListPage implements OnInit {
         this.nav.back();
     }
 
-    private getMovies(category: string, pageNumber: number) {
+    public getMovies(category: string, pageNumber: number) {
         this.isDataLoaded = false;
         switch (category) {
             case 'upcoming':

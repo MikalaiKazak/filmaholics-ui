@@ -16,11 +16,11 @@ export class RegistrationPage implements OnInit {
     public registrationForm: FormGroup;
 
     constructor(
-        private nav: NavController,
-        private coreService: CoreService,
-        private formBuilder: FormBuilder,
-        private authService: AuthenticationService,
-        private router: Router,
+        public nav: NavController,
+        public coreService: CoreService,
+        public formBuilder: FormBuilder,
+        public authService: AuthenticationService,
+        public router: Router,
     ) {
         coreService.menuEnable = false;
     }

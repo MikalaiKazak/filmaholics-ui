@@ -19,7 +19,7 @@ export class SearchPage implements OnInit {
     searchText = '';
     movieList: Array<Movie> = [];
     @ViewChild('searchbar', {static: false}) searchbar: IonSearchbar;
-    private isDataLoaded = true;
+    public isDataLoaded = true;
 
     regions: { code: string, region: string }[] = [
         {code: ' ', region: 'Any'},
@@ -210,7 +210,7 @@ export class SearchPage implements OnInit {
     adult: boolean;
     pageCount = 1;
 
-    constructor(private movieService: MovieService, private coreService: CoreService, private nav: NavController,) {
+    constructor(public movieService: MovieService, public coreService: CoreService, public nav: NavController,) {
         coreService.menuEnable = true;
     }
 

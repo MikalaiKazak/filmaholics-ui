@@ -15,9 +15,9 @@ export class GenrePage implements OnInit {
     isDataLoaded = false;
     genreList: Genre[] = [];
 
-    constructor(private coreService: CoreService,
-                private nav: NavController,
-                private movieService: MovieService, private activatedRoute: ActivatedRoute, private route: Router) {
+    constructor(public coreService: CoreService,
+                public nav: NavController,
+                public movieService: MovieService, public activatedRoute: ActivatedRoute, public route: Router) {
         coreService.menuEnable = true;
     }
 
@@ -40,7 +40,7 @@ export class GenrePage implements OnInit {
         this.nav.back();
     }
 
-    private getGenre() {
+    public getGenre() {
         this.isDataLoaded = false;
         this.movieService.getGenre().subscribe(genres => {
             this.genreList = genres;

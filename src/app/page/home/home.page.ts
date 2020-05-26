@@ -36,7 +36,7 @@ export class HomePage implements OnInit {
     isNowPlayingMovieListLoaded = false;
     isTopRatedMovieListLoaded = false;
 
-    constructor(private movieService: MovieService, private coreService: CoreService, public slider: SliderComponent, private route: Router) {
+    constructor(public movieService: MovieService, public coreService: CoreService, public slider: SliderComponent, public route: Router) {
         coreService.menuEnable = true;
     }
 
@@ -82,7 +82,7 @@ export class HomePage implements OnInit {
         });
     }
 
-    private getMovies(category: string, pageNumber: number) {
+    public getMovies(category: string, pageNumber: number) {
         this.isPopularMovieListLoaded = false;
         this.isUpcomingMovieListLoaded = false;
         this.isNowPlayingMovieListLoaded = false;
